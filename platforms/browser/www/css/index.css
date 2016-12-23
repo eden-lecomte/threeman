@@ -1,0 +1,312 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+/* declare fonts */
+@font-face {
+  font-family: 'montserrat';
+  src: url('../fonts/Montserrat-Regular.ttf'); /* IE9 Compat Modes */
+}
+
+body {
+    -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+    -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#88bfe8+0,70b0e0+100;Blue+3D+%2317 */
+    background: #211f34; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #2E3242 0%, #211f34 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  #2E3242 0%,#211f34 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  #2E3242 0%,#211f34 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+
+    background-attachment:fixed;
+    font-family: montserrat, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
+    font-size: 1.0em;
+    color: #aff2d1;
+    margin:0px;
+    padding:0px;
+    /*text-transform:uppercase;*/
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+
+}
+
+/* Portrait layout (default) */
+.app {
+    /*background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    /*position:absolute;             /* position in the center of the screen */
+    /*left:50%;
+    top: 0px;*/
+    height: 90vh;                   /* text area height */
+    width:90%;                   /* text area width */
+
+    /*padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin: 0px 0px -145px 0px;  /* offset vertical: half of image height and text area height */
+                                   /* offset horizontal: half of text area width */
+    z-index: -1;
+    position: fixed;
+    left: 0px;
+
+}
+
+.app > * {
+    display: none;
+}
+
+.app > *:target {
+    display: block;
+}
+
+.app > *:last-child {
+    display: block;
+}
+
+.app > *:target ~ * {
+    display: none;
+}
+
+.container {
+    padding: 0px 5%;
+    margin-top: 50px;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+h1 {
+    font-size:24px;
+    font-weight:normal;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
+}
+
+.event {
+    border-radius:4px;
+    -webkit-border-radius:4px;
+    color:#FFFFFF;
+    font-size:12px;
+    margin:0px 30px;
+    padding:2px 0px;
+}
+
+.event.listening {
+    background-color:#333333;
+    display:block;
+}
+
+.event.received {
+    background-color:#4B946A;
+    display:none;
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+  
+@-webkit-keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+ 
+.blink {
+    animation:fade 3000ms infinite;
+    -webkit-animation:fade 3000ms infinite;
+}
+
+
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;  
+  width: 100%;
+  height: 40px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+  /*height: 85px;*/ 
+}
+
+#menu {
+    height: 60vh;
+    text-align: middle;  
+    background-image: url('../img/logo.png');
+    background-size: 70vw;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#menu img {
+    width: 60%;
+
+}
+
+#startGame {
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 80%
+}
+    #startGame div {
+        width: 100%;
+        clear: both;
+        background-color: #3a394d;
+        border: none;
+        border-radius: 40px 40px 40px 40px;
+        height: 2.5em;
+        margin: 5px;
+        text-transform: uppercase;
+        font-size: 1.5em;
+        text-align: center;
+    }
+
+    #startGame a {
+        text-decoration: none;
+        color: #aff2d1;      
+        padding-top: 0.6em;
+        display: block;
+    }
+
+#rules {
+    width: 94vw;
+    padding: 0px 7%;
+}
+
+#rules > #content {
+    overflow-y: scroll;
+    margin-top: 40px;
+    height: 85vh;
+    
+}
+
+.customScroll {
+    scrollbar-face-color: #367CD2;
+    scrollbar-shadow-color: #FFFFFF;
+    scrollbar-highlight-color: #FFFFFF;
+    scrollbar-3dlight-color: #FFFFFF;
+    scrollbar-darkshadow-color: #FFFFFF;
+    scrollbar-track-color: #FFFFFF;
+    scrollbar-arrow-color: #FFFFFF;
+    padding-right: 7%;
+}
+
+/* Scrollbar */
+.customScroll::-webkit-scrollbar {
+    width: 8px;
+}
+ 
+/* Track */
+.customScroll::-webkit-scrollbar-track {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+.customScroll::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #3a394d; 
+}   
+
+.goBack a{
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    height: 50px;
+    width: 50px;
+    background-image: url('../img/left-arrow.png');
+    background-size: contain;
+}
+
+
+
+.diceSelection {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+}
+
+.door {
+    width: 30%;
+    display: inline-block;
+    background-image: url('../img/hat.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 7em;
+    text-align: center;
+}
+
+.door.selected {
+    background-image: url('../img/hatoff.png');
+}
+
+/* dice */
+.diceroll {
+    position: fixed;
+    top: 40vh;
+    left: 50vw;
+    margin-left: -20vw;
+    width: 80vw;
+}
+
+.dice {
+    display: inline-block;
+    width: 20vw;
+    height: 20vw;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 2vw;
+}
+
+.pink {
+    background-image: url('../img/2pink.png');
+}
+
+.orange {
+    background-image: url('../img/1orange.png');
+
+}
