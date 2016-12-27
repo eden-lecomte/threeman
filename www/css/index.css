@@ -276,25 +276,13 @@ footer {
     width: 100%;
 }
 
-.door {
-    width: 30%;
-    display: inline-block;
-    background-image: url('../img/hat.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 7em;
-    text-align: center;
-}
-
-.door.selected {
-    background-image: url('../img/hatoff.png');
-}
 
 /* dice */
 .diceroll > .button {
     position: absolute;
-    top: 60vh;
+    left: 20vw;
+    top: 70vh;
+    width: 60vw;
 }
 
 .dice {
@@ -308,13 +296,13 @@ footer {
 
 #dice1 {
     position: fixed;
-    top: 40vh;
+    top: 30vh;
     left: 30vw;
 }
 
 #dice2 {
     position: fixed;
-    top: 40vh;
+    top: 30vh;
     left: 55vw;
 }
 
@@ -365,7 +353,54 @@ footer {
 #rules .dice {
     width: 2em;
     height: 2em;
-}    
+} 
+.results {
+    width: 80vw;
+    height: 80vh;
+    margin: 10vw, 10vh;
+    position: fixed;
+    top: 10vh;
+    left: 10vw;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#88bfe8+0,70b0e0+100;Blue+3D+%2317 */
+    background: #211f34; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #2E3242 0%, #211f34 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  #2E3242 0%,#211f34 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  #2E3242 0%,#211f34 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.75);
+    display: none;
+    z-index: 999;
+}
+
+#instructions {
+    position: absolute;
+    top:45vh;
+    text-align: center;
+    display: block;
+    width: 90%;
+    padding: 5%;
+}
+
+#rollInstructions {
+    color: #e81f7b;
+    position: absolute;
+    top:60vh;
+    text-align: center;
+    display: block;
+    width: 90%;
+    padding: 5%;  
+    font-size: 1.5em;
+    text-transform: uppercase;  
+}
+
+#diceResult {
+    font-size: 20em;
+    color: #2E3242;
+    text-align: center;
+}
+
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
@@ -401,3 +436,5 @@ footer {
         left: 55vw;
     }
 }
+
+

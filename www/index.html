@@ -50,17 +50,34 @@
     </header>
     <div class="app">
 
+        <!-- test -->
+        <div id="test" class="container">
+            <div class="goBack"><a href="#menu"></a></div>
+            <div class="results">
+                <div id="diceResult"></div>
+                <div id="instructions"></div>
+                <div id="rollInstructions"></div>
+            </div>
+            <div class="diceroll">
+                
+                <div id="dice1" class="dice orange"></div>
+                <div id="dice2" class="dice pink"></div>
+                <div class="button"><a class="diceRoller" href="#game">Roll Dice</a></div>
+            </div>
+        </div>
+
         <!-- game -->
         <div id="game" class="container">
             <div class="goBack"><a href="#menu"></a></div>
             <div class="results">
                 <div id="diceResult"></div>
                 <div id="instructions"></div>
+                <div id="rollInstructions"></div>
             </div>
             <div class="diceroll">
                 <div id="dice1" class="dice orange"></div>
                 <div id="dice2" class="dice pink"></div>
-                <div class="button"><a href="#game">Roll Dice</a></div>
+                <div class="button"><a class="diceRoller" href="#game">Roll Dice</a></div>
             </div>
         </div>
 
@@ -106,7 +123,8 @@
                     <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> Two drinks for everyone, except Three Man</li>
 
                 </ul>
-                <ph2>Drink left or right</h2>
+                <h2>7/11</h2>
+                <hr>
                 <p>Player to the right of you takes a drink.</p>
                 <ul>
                     <li><span class="dice orange" name="2"></span><span class="dice pink" name="5"></span></li>
@@ -117,6 +135,19 @@
                 <ul>
                     <li><span class="dice orange" name="5"></span><span class="dice pink" name="6"></span></li>
                 </ul>                
+                <h2>Additional rules</h2>
+                <hr>
+                <p>There are some additional courtesy rules to play by.</p>
+                <ul>
+                    <li>Do not touch the phone unless it is your turn, or take a drink (the owner of the phone is exempt from this rule)</li>
+                    <li>If you accept the phone from someone's hands, then you must finish your drink</li>
+                </ul>
+                <h4>Off the table</h4>
+                <p>In the tabletop version of Three Man, if you roll the dice off the table you must either finish your drink or become the new Three Man (or both).<br>
+                If you wish, you can play with a 1% chance of someone rolling off the table by selecting the rules below.</p>
+                <div id="options">
+                    <input type="checkbox" id="finishDrink" ><label for='finishDrink'>Finish Drink</label> | <input type="checkbox" id="become3Man"><label for='become3Man'>Become Three Man</label>  
+                </div>
                 <div class="button"><a href="#game">LETS GET DRUNK</a></div>
 
             </div>
@@ -127,6 +158,7 @@
             <div id="startGame">
                 <div class="button"><a href="#game">Start</a></div>
                 <div class="button"><a href="#rules">How to play</a></div>
+                <div class="button"><a href="#test">Test</a></div>
             </div>
         </div>
     </div>
@@ -142,10 +174,16 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/ruleset.js"></script>    
     <script type="text/javascript" src="js/config.js"></script>
+    <script type="text/javascript" src="js/d6.js"></script>
 
     
     <script type="text/javascript">
-        app.initialize();
+        //app.initialize();
+        initGame.init();
+        
+        D6.setBaseUrl('img/');
+
+        D6.dice(2);
     </script>
 </body>
 

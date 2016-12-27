@@ -4,6 +4,8 @@ var globalRules = {
     dice: 2,
 }
 
+
+
 var threeManExists = false;
 var selectedDoors = [];
 var virgin = true;
@@ -12,39 +14,28 @@ var diceRolled = false;
 var initGame = {
     init: function() {
 
-        $('.selected').text('');        
-        $('.selected').removeClass('selected');
         virgin = true;
-        selectedDoors = [];
         diceRolled = false; 
 
-        $('.door:not(.selected)').on('click', function(e) {
-
-            if( $('.selected').length >= globalRules.dice-1 ) {
-                $('.door').unbind();    
-            }               
-            
-
-            if( $('.selected').length < globalRules.dice ) {
-                $(this).addClass('selected');
-                selectedDoors.push( $(this) );
-            }        
+        $('.diceRoller').on('click', function(e) {
 
             if (diceRolled == false){
+                diceRolled = true; //stop double clicking                 
                 rollDice();
-                diceRolled = true;   
+                diceRolled = true; 
+                gameFunctions[diceRoll[0]]();       
+
+                //update the dice image
+                $('#dice1').attr('name', diceRoll[0]);
+                $('#dice2').attr('name', diceRoll[1]);
+
+                console.log(diceRoll);
+                $('body').css('background', '#aff2d1');
+                $('#diceResult').text(diceCombined);
+                $('.results').fadeIn('fast');
             };
+            diceRolled = false; //stop double clicking                 
             
-            if (selectedDoors[0]) {
-                (selectedDoors[0]).text(diceRoll[0]);
-            }
-             
-            if (selectedDoors[1]) {
-                (selectedDoors[1]).text(diceRoll[1]);
-                gameFunctions[diceRoll[0]]();
-
-            }
-
         });
     }
 }
@@ -55,7 +46,7 @@ var gameFunctions = {
     1: function() {
         if (diceRoll[1] == 1) {
             //double 1s - duel!
-            gameFunctions.duel();
+            gameFunctions.twoforMe();
         } else if (diceRoll[1] == 2) {
             //3 man
             gameFunctions.threeman();
@@ -79,10 +70,7 @@ var gameFunctions = {
             gameFunctions.threeman();
         } else if (diceRoll[1] == 2) {
             //2 for 2!
-            $('#instructions').text('Pick 2 people to drink 2 each');
-            virgin = false;
-            gameFunctions.checkVirgin();
-
+            gameFunctions.twoForTwo();
         } else if (diceRoll[1] == 3) {
             //5 - nothing
             gameFunctions.checkVirgin();
@@ -108,11 +96,12 @@ var gameFunctions = {
         } else if (diceRoll[1] == 3) {
             if (threeManExists == true) {
                 $('#instructions').text('Threeman drink 3x!');
+                $('#rollInstructions').text('Roll again');
                 gameFunctions.checkVirgin();
                 
             } else {
                 $('#instructions').text('There is no threeman yet...');
-                gameFunctions.resetDice();
+                gameFunctions.checkVirgin();
             }
         } else if (diceRoll[1] == 4) {
             gameFunctions.toLeft();
@@ -132,7 +121,7 @@ var gameFunctions = {
             gameFunctions.toLeft();
             gameFunctions.check3man();
         } else if (diceRoll[1] == 4) {
-            gameFunctions.checkVirgin();            
+            gameFunctions.duel();
         } else if (diceRoll[1] == 5) {
             gameFunctions.checkVirgin();
         } else if (diceRoll[1] == 6) {
@@ -166,73 +155,88 @@ var gameFunctions = {
         } else if (diceRoll[1] == 5) {
             gameFunctions.toRight();
         } else if (diceRoll[1] == 6) {
-            $('#instructions').text('Everyone except Threeman, drink 2!');
-            gameFunctions.checkVirgin();
+            gameFunctions.doubleSix();
         }
     },                    
     checkTotals: function() {
 
 
     },
+    doubleSix: function() {
+        if (threeManExists == true) {
+            $('#instructions').text('Everyone except Threeman, drink 2!');  
+            $('#rollInstructions').text('Roll again');                              
+        } else {
+            gameFunctions.checkVirgin();
+        }
+    },
     check3man: function() {
+        console.log('Check for a 3 man function run');
         if (threeManExists == true) {
             $('#instructions').text('Threeman drinks!');
-            gameFunctions.checkVirgin();
+            $('#rollInstructions').text('Roll again');            
         } else {
             //nothing?
             gameFunctions.checkVirgin();
         }
     },
     threeman: function() {
+        console.log('Three man function run');
         virgin = false;
         threeManExists = true;
         $('#instructions').text('You are the new Threeman! Put on the sweet hat, and drink to say hello!');
-
-        setTimeout( function() {
-            gameFunctions.resetDice();
-        }, 5000);
+        $('#rollInstructions').text('Roll again');        
     },
     social: function() {
+        console.log('Social function run');
         virgin = false;
         $('#instructions').text('Everyone drink!');
-        setTimeout( function() {
-            gameFunctions.resetDice();
-        }, 3000);
+        $('#rollInstructions').text('Roll again');
     },
     duel: function() {
+        console.log('Duel function run');        
         virgin = false;
-        $('#instructions').text('Pick 2 people duel');
-        setTimeout( function() {
-            gameFunctions.resetDice();
-        }, 3000);
-
+        $('#instructions').text('Pick 2 to people duel');
+        $('#rollInstructions').text('Roll again');        
     },
     toLeft: function() {
+        console.log('To the left function run');
         virgin = false;
+        $('#rollInstructions').text('Roll again');        
         $('#instructions').text('Drink to the left!');
-        setTimeout( function() {
-            gameFunctions.resetDice();
-        }, 3000);
     },
     toRight: function() {
+        console.log('To the right function run');
         virgin = false;
         $('#instructions').text('Drink to the right!');
-        setTimeout( function() {
-            gameFunctions.resetDice();
-        }, 3000);
+        $('#rollInstructions').text('Roll again');
     },
+    twoForTwo: function() {
+        console.log('Two for two');
+        virgin = false;
+        $('#instructions').text('Pick 2 people to drink 2 drinks');
+        $('#rollInstructions').text('Roll again');
+    },
+    twoforMe: function() {
+        console.log('Two for Me');
+        virgin = false;
+        $('#instructions').text('Two drinks for you!');
+        $('#rollInstructions').text('Roll again');
+        
+    },    
     checkVirgin: function() {
+        console.log('Virgin check run');
         if (virgin == true) {
-            $('#instructions').text('You rolled... nothing! Go again')
+            $('#instructions').text('Virgin roll, drink and go again!')
             virgin = false; 
-            setTimeout(function() {
-                gameFunctions.resetDice();
-            },3000);
+            $('#rollInstructions').text('Roll again');
         } else {
-            $('#instructions').text('Nothing... Next players turn!')
-            setTimeout( function() {
-                gameFunctions.resetDice();
-            }, 3000);
+            $('#instructions').html('Nothing... <br><h2>Next players turn!</h2>')
+            console.log('----------');
+            console.log('NEW PLAYER');
+            console.log('----------');            
+            virgin = true;
+            $('#rollInstructions').text('<- Pass phone to the left');
         }
     },
     resetDice: function() {
