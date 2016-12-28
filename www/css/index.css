@@ -49,8 +49,10 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
 
-
+.teal {
+    background: #aff2d1;
 }
 
 /* Portrait layout (default) */
@@ -294,13 +296,13 @@ footer {
     background-position: center;
 }
 
-#dice1 {
+.dice1 {
     position: fixed;
     top: 30vh;
-    left: 30vw;
+    left: 27vw;
 }
 
-#dice2 {
+.dice2 {
     position: fixed;
     top: 30vh;
     left: 55vw;
@@ -374,7 +376,15 @@ footer {
     z-index: 999;
 }
 
-#instructions {
+.results > * {
+    z-index: 1000;
+}
+
+.results > .dice {
+    opacity: 0.8;
+}
+
+.instructions {
     position: absolute;
     top:45vh;
     text-align: center;
@@ -397,9 +407,50 @@ footer {
 
 #diceResult {
     font-size: 20em;
-    color: #2E3242;
+    color: #39394B;
     text-align: center;
 }
+
+#options > label {
+    width: 70vw;
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+/*Duel section */ 
+#duel .dice1 {
+    top: 30vh;
+    left: 40vw;
+}
+
+#duel .dice2 {
+    top: 60vh;
+    left: 40vw;    
+}
+
+#orange {
+    position: absolute;
+    top: 10vh;
+    width: 65vw;
+    left: 20vw;
+    transform: rotate(180deg);
+}
+
+#orange .button a {
+    color: #fe723f;
+}
+
+#pink {
+    position: absolute;
+    top: 80vh;
+    width: 65vw;
+    left: 16vw;
+}
+
+#pink .button a {
+    color: #e81f7b;
+}
+
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
@@ -424,15 +475,20 @@ footer {
         top: 70vh;
     }
 
-    #dice1 {
-        position: fixed;
-        top: 30vh;
-        left: 30vw;
+    #diceResult {
+        position: relative;
+        top: -10vh;
     }
 
-    #dice2 {
+    .dice1 {
         position: fixed;
-        top: 30vh;
+        top: 23vh;
+        left: 27vw;
+    }
+
+    .dice2 {
+        position: fixed;
+        top: 23vh;
         left: 55vw;
     }
 }

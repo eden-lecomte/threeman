@@ -41,7 +41,8 @@
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />  
     <link rel="stylesheet" type="text/css" href="css/transitions.css" />
-    
+    <link rel="stylesheet" href="css/switchery.min.css" />
+
     <title>Three man</title>
 </head>
 
@@ -50,35 +51,36 @@
     </header>
     <div class="app">
 
-        <!-- test -->
-        <div id="test" class="container">
-            <div class="goBack"><a href="#menu"></a></div>
-            <div class="results">
-                <div id="diceResult"></div>
-                <div id="instructions"></div>
-                <div id="rollInstructions"></div>
-            </div>
-            <div class="diceroll">
-                
-                <div id="dice1" class="dice orange"></div>
-                <div id="dice2" class="dice pink"></div>
-                <div class="button"><a class="diceRoller" href="#game">Roll Dice</a></div>
-            </div>
-        </div>
 
         <!-- game -->
         <div id="game" class="container">
             <div class="goBack"><a href="#menu"></a></div>
             <div class="results">
                 <div id="diceResult"></div>
-                <div id="instructions"></div>
-                <div id="rollInstructions"></div>
+                <div class="dice dice1 orange"></div>
+                <div class="dice dice2 pink"></div>
+                <div class="instructions"></div>
+                <div class="diceRoller" id="rollInstructions"></div>
             </div>
             <div class="diceroll">
-                <div id="dice1" class="dice orange"></div>
-                <div id="dice2" class="dice pink"></div>
+                <div id="dice1" class="dice dice1 orange"></div>
+                <div id="dice2" class="dice dice2 pink"></div>
                 <div class="button"><a class="diceRoller" href="#game">Roll Dice</a></div>
             </div>
+        </div>
+
+        <!-- duel mode -->
+        <div id="duel" class="container">
+            <div id="orange" class="dueller">
+                <div class="button"><a class="diceRollerDuel">Roll Dice</a></div>
+            </div>
+            <div id="pink" class="dueller">
+                <div class="button"><a class="diceRollerDuel">Roll Dice</a></div>
+            </div>
+                <div class="dice dice1 orange"></div>
+                <div class="dice dice2 pink"></div>
+                <div class="instructions"></div>
+                <div class="diceRoller" id="rollInstructions"></div>
         </div>
 
         <!-- rules -->
@@ -146,7 +148,8 @@
                 <p>In the tabletop version of Three Man, if you roll the dice off the table you must either finish your drink or become the new Three Man (or both).<br>
                 If you wish, you can play with a 1% chance of someone rolling off the table by selecting the rules below.</p>
                 <div id="options">
-                    <input type="checkbox" id="finishDrink" ><label for='finishDrink'>Finish Drink</label> | <input type="checkbox" id="become3Man"><label for='become3Man'>Become Three Man</label>  
+                    <label for='finishDrink'>Finish Drink</label><input type="checkbox" id="finishDrink" class="js-switch"> <br>
+                    <label for='become3Man'>Become Three Man</label><input type="checkbox" id="become3Man" class="js-switch">  
                 </div>
                 <div class="button"><a href="#game">LETS GET DRUNK</a></div>
 
@@ -158,7 +161,8 @@
             <div id="startGame">
                 <div class="button"><a href="#game">Start</a></div>
                 <div class="button"><a href="#rules">How to play</a></div>
-                <div class="button"><a href="#test">Test</a></div>
+                <div class="button"><a href="#duel">Duel (test)</a></div>
+
             </div>
         </div>
     </div>
@@ -174,16 +178,18 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/ruleset.js"></script>    
     <script type="text/javascript" src="js/config.js"></script>
-    <script type="text/javascript" src="js/d6.js"></script>
+    <script src="js/switchery.min.js"></script>
 
     
     <script type="text/javascript">
         //app.initialize();
         initGame.init();
-        
-        D6.setBaseUrl('img/');
 
-        D6.dice(2);
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+
+        elems.forEach(function(html) {
+            var switchery = new Switchery(html);
+        });
     </script>
 </body>
 
