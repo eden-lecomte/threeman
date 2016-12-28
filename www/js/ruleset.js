@@ -18,9 +18,23 @@ var initGame = {
         diceRolled = false; 
 
         $('.diceRoller').on('click', function(e) {
-            if ($(this).hasClass('passPhone') == false) {
-                
+            if ($(this).hasClass('passPhone') == false ) {
+                                
                 if (diceRolled == false){
+                    
+                    if ( $(this).hasClass('duelTime') ) {
+                        // reset style back to start
+                        $('body').removeClass('teal');
+                        $('.results').fadeOut('fast');
+                        $('.instructions').text('');
+                        $('.rollInstructions').text('');
+                        $(this).removeClass('duelTime');
+
+                        //take us to duel page
+                        window.location.hash = '#duel';
+                        return
+                    };
+
                     diceRolled = true; //stop double clicking                 
                     rollDice();
                     diceRolled = true; 
@@ -36,18 +50,16 @@ var initGame = {
                 };
                 diceRolled = false; //stop double clicking                 
             }
+            
         });
 
         //duel init
         $('#duel .diceRollerDuel').on('click', function(e) {
             var id = $(this).parent().parent().attr('id');
-            $(this).parent().hide();
+            $(this).parent().fadeOut('fast');
             
             //check if both dice have been rolled
             var playerButtons = $('.diceRollerDuel');
-
-            //reset DiceRoll
-            diceRoll = [0, 0]; 
 
             //check which player is rolling
             if (id == 'orange') {
@@ -61,12 +73,45 @@ var initGame = {
                 $(this).addClass('rolled');
             };            
 
+            // when both players have rolled
             setTimeout( function() {
                 if ( $(playerButtons[0]).hasClass('rolled') && $(playerButtons[1]).hasClass('rolled') == true) {
-                    gameFunctions[diceRoll[0]]();       
+                    
+                    if ( diceRoll[0] > diceRoll[1] ) {
+                        $('#orange .duelResult').html("<h3>You win!</h3>");
+                        $('#pink .duelResult').html("<h3>You lose!</h3><p>Drink " + (diceRoll[0] - diceRoll[1]) + "<span class='bitch'> </span>!</p>")
+                        if ( (diceRoll[0] - diceRoll[1]) >= 5 ) {
+                            $('.bitch').text(', bitch');
+                        }                        
+                    }
+                    if ( diceRoll[1] > diceRoll[0] ) {
+                        $('#pink .duelResult').html("<h3>You win!</h3>");
+                        $('#orange .duelResult').html("<h3>You lose!</h3><p>Drink " + (diceRoll[1] - diceRoll[0]) + "<span class='bitch'> </span>!</p>")                        
+                        if ( (diceRoll[1] - diceRoll[0]) >= 5 ) {
+                            $('.bitch').text(', bitch');
+                        }
+                    }
+
+                    $('.rolled').removeClass('rolled');
+
+                    //run standard functions for overall total
+                    $('#diceResult').text(diceCombined);
+                    gameFunctions[diceRoll[0]]();     
+
+                    $('#duel .rollInstructions').html('<a class="diceRoller" href="#game">Pass phone back</a>');
+                    $('.rollInstructions').addClass('passPhone');
+
+                    $('.passPhone').on('click.remove', function(e) {
+                        // reset style back to start
+                        $('.duelResult').html('');
+                        $('.dueller .button').show();
+                        $('body').removeClass('teal');
+                        $('.results').fadeOut('fast');
+                        $('.passPhone').unbind('click.remove');
+                        $('.passPhone').removeClass('passPhone');            
+                    });
                 }
             }, 50)
-            //run standard functions for overall total
 
         });
 
@@ -134,7 +179,7 @@ var gameFunctions = {
         } else if (diceRoll[1] == 3) {
             if (threeManExists == true) {
                 $('.instructions').text('Threeman drink 3x!');
-                $('#rollInstructions').text('Roll again');
+                $('.rollInstructions').text('Roll again');
                 gameFunctions.checkVirgin();
                 
             } else {
@@ -144,7 +189,7 @@ var gameFunctions = {
             gameFunctions.toLeft();
             if (threeManExists == true) {
                 $('.instructions').append('<br> and Threeman drinks!');
-                $('#rollInstructions').text('Roll again');            
+                $('.rollInstructions').text('Roll again');            
             }
         } else if (diceRoll[1] == 5) {
             gameFunctions.check3man();
@@ -161,7 +206,7 @@ var gameFunctions = {
             gameFunctions.toLeft();
             if (threeManExists == true) {
                 $('.instructions').append('<br> and Threeman drinks!');
-                $('#rollInstructions').text('Roll again');            
+                $('.rollInstructions').text('Roll again');            
             }
         } else if (diceRoll[1] == 4) {
             gameFunctions.duel();
@@ -208,7 +253,7 @@ var gameFunctions = {
     doubleSix: function() {
         if (threeManExists == true) {
             $('.instructions').text('Everyone except Threeman, drink 2!');  
-            $('#rollInstructions').text('Roll again');                              
+            $('.rollInstructions').text('Roll again');                              
         } else {
             gameFunctions.checkVirgin();
         }
@@ -217,7 +262,7 @@ var gameFunctions = {
         console.log('Check for a 3 man function run');
         if (threeManExists == true) {
             $('.instructions').text('Threeman drinks!');
-            $('#rollInstructions').text('Roll again');            
+            $('.rollInstructions').text('Roll again');            
         } else {
             //nothing?
             gameFunctions.checkVirgin();
@@ -228,68 +273,72 @@ var gameFunctions = {
         virgin = false;
         threeManExists = true;
         $('.instructions').text('You are the new Threeman! Put on the sweet hat, and drink to say hello!');
-        $('#rollInstructions').text('Roll again');        
+        $('.rollInstructions').text('Roll again');        
     },
     social: function() {
         console.log('Social function run');
         virgin = false;
         $('.instructions').text('Everyone drink!');
-        $('#rollInstructions').text('Roll again');
+        $('.rollInstructions').text('Roll again');
     },
     duel: function() {
         console.log('Duel function run');        
         virgin = false;
+        diceRoll = [];//reset dice roll
         $('.instructions').html('Pick 2 to people duel<br>Loser drinks the difference');
-        $('#rollInstructions').text('Roll again');        
+        $('.rollInstructions').text('Pass phone to Duellers'); 
+        $('.rollInstructions').addClass('duelTime'); 
     },
     toLeft: function() {
         console.log('To the left function run');
         virgin = false;
-        $('#rollInstructions').text('Roll again');        
+        $('.rollInstructions').text('Roll again');        
         $('.instructions').text('Drink to the left!');
     },
     toRight: function() {
         console.log('To the right function run');
         virgin = false;
         $('.instructions').text('Drink to the right!');
-        $('#rollInstructions').text('Roll again');
+        $('.rollInstructions').text('Roll again');
     },
     twoForTwo: function() {
         console.log('Two for two');
         virgin = false;
         $('.instructions').text('Pick 2 people to drink 2 drinks');
-        $('#rollInstructions').text('Roll again');
+        $('.rollInstructions').text('Roll again');
     },
     twoforMe: function() {
         console.log('Two for Me');
         virgin = false;
         $('.instructions').text('Two drinks for you!');
-        $('#rollInstructions').text('Roll again');
+        $('.rollInstructions').text('Roll again');
         
     },    
     checkVirgin: function() {
-        console.log('Virgin check run');
-        if (virgin == true) {
-            $('.instructions').text('Virgin roll, drink and go again!')
-            virgin = false; 
-            $('#rollInstructions').text('Roll again');
-        } else {
-            $('.instructions').html('Nothing... <br>Next players turn!')
-            console.log('----------');
-            console.log('NEW PLAYER');
-            console.log('----------');            
-            $('#rollInstructions').text('<- Pass phone left');
-            
-            $('#rollInstructions').addClass('passPhone');
-            $('.passPhone').on('click.remove', function(e) {
-                // reset style back to start
-                $('body').removeClass('teal');
-                $('.results').fadeOut('fast');
-                $('.passPhone').unbind('click.remove');
-                $('.passPhone').removeClass('passPhone');            
-            });
-            
-            virgin = true;                    
+        if (window.location.hash != '#duel') {
+            console.log('Virgin check run');
+            if (virgin == true) {
+                $('.instructions').text('Virgin roll, drink and go again!')
+                virgin = false; 
+                $('.rollInstructions').text('Roll again');
+            } else {
+                $('.instructions').html('Nothing... <br>Next players turn!')
+                console.log('----------');
+                console.log('NEW PLAYER');
+                console.log('----------');            
+                $('.rollInstructions').text('<- Pass phone left');
+                
+                $('.rollInstructions').addClass('passPhone');
+                $('.passPhone').on('click.remove', function(e) {
+                    // reset style back to start
+                    $('body').removeClass('teal');
+                    $('.results').fadeOut('fast');
+                    $('.passPhone').unbind('click.remove');
+                    $('.passPhone').removeClass('passPhone');            
+                });
+                
+                virgin = true;                    
+            }
         }
     },
     resetDice: function() {

@@ -393,7 +393,7 @@ footer {
     padding: 5%;
 }
 
-#rollInstructions {
+.rollInstructions {
     color: #e81f7b;
     position: absolute;
     top:60vh;
@@ -417,20 +417,29 @@ footer {
     padding-bottom: 20px;
 }
 
-/*Duel section */ 
+/*Duel section */
+#duel a {
+    text-decoration: none;
+    color: #e81f7b;
+}
+
+.dueller {
+    text-align: center;
+}
+
 #duel .dice1 {
-    top: 30vh;
+    top: 20vh;
     left: 40vw;
 }
 
 #duel .dice2 {
-    top: 60vh;
+    top: 70vh;
     left: 40vw;    
 }
 
 #orange {
     position: absolute;
-    top: 10vh;
+    top: 5vh;
     width: 65vw;
     left: 20vw;
     transform: rotate(180deg);
@@ -442,7 +451,7 @@ footer {
 
 #pink {
     position: absolute;
-    top: 80vh;
+    top: 85vh;
     width: 65vw;
     left: 16vw;
 }
@@ -450,7 +459,22 @@ footer {
 #pink .button a {
     color: #e81f7b;
 }
+#duel .instructions {
+    top: 50vh;
+}
 
+.duelInstructions {
+    position: absolute;
+    top:45vh;
+    text-align: center;
+    display: block;
+    width: 90%;
+    padding: 5%;
+}
+
+#duel .rollInstructions {
+    top: 50vh;
+}
 
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
