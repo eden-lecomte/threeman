@@ -102,13 +102,26 @@ body {
 
 
 h1 {
-    font-size:24px;
+    font-size:26px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
     padding:0px;
-    text-align:center;
+    /*text-align:center;*/
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
+
+h2 {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+p {
+    line-height: 24px;
+}
+
 
 .event {
     border-radius:4px;
@@ -165,10 +178,10 @@ footer {
 }
 
 #menu {
-    height: 60vh;
+    height: 45vh;
     text-align: middle;  
     background-image: url('../img/logo.png');
-    background-size: 70vw;
+    background-size: 50vw;
     background-repeat: no-repeat;
     background-position: center;
 }
@@ -180,9 +193,10 @@ footer {
 
 #startGame {
     position: absolute;
-    bottom: 0;
-    left: 15%;
-    width: 80%
+    bottom: 10vh;
+    left: 10%;
+    width: 90%;
+    max-width: 500px;
 }
     .button {
         width: 100%;
@@ -190,11 +204,12 @@ footer {
         background-color: #3a394d;
         border: none;
         border-radius: 40px 40px 40px 40px;
-        height: 2.5em;
-        margin: 5px;
+        height: 3.2em;
+        margin-top: 30px;
         text-transform: uppercase;
         font-size: 1.5em;
         text-align: center;
+        letter-spacing: 3px;
     }
 
     .button:active {
@@ -204,31 +219,35 @@ footer {
     .button a {
         text-decoration: none;
         color: #aff2d1;      
-        padding-top: 0.6em;
+        padding-top: 0.9em;
         display: block;
     }
     .button a:active {
-        text-decoration: none;
+        /*text-decoration: none;*/
         color: #3a394d;      
-        padding-top: 0.6em;
-        display: block;
+        /*padding-top: 0.9em;*/
+        /*display: block;*/
     }    
 
 #rules {
-    width: 94vw;
-    padding: 0px 7%;
+    /*width: 94vw;*/
+    /*padding: 0px 7%;*/
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 #rules > #content {
     overflow-y: scroll;
-    margin-top: 40px;
+    margin-top:80px;
     height: 85vh;
     
 }
 
 #rules ul {
     list-style: none;
-    padding-left: 10px;
+    padding-left: 0px;
+    line-height: 24px;
 }
 
 .customScroll {
@@ -262,8 +281,8 @@ footer {
 
 .goBack a{
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 40px;
+    left: 40px;
     height: 50px;
     width: 50px;
     background-image: url('../img/left-arrow.png');
@@ -356,6 +375,11 @@ footer {
     width: 2em;
     height: 2em;
 } 
+
+#rules .button {
+    margin-bottom: 80px;
+}
+
 .results {
     width: 80vw;
     height: 80vh;
