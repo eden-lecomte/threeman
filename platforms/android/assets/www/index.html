@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />  
+    <link rel="stylesheet" type="text/css" href="css/transitions.css" />
+    <link rel="stylesheet" href="css/switchery.min.css" />
+
+    <title>Three man</title>
+</head>
+
+<body>
+    <header>
+    </header>
+    <div class="app">
+        <!-- game -->
+        <div id="game" class="container">
+            <div class="goBack"><a href="#menu"></a></div>
+            <div class="results">
+                <div id="diceResult"></div>
+                <div class="dice dice1 orange"></div>
+                <div class="dice dice2 pink"></div>
+                <div class="instructions"></div>
+                <div class="diceRoller rollInstructions"></div>
+            </div>
+            <div class="diceroll">
+                <div id="dice1" class="dice dice1 orange"></div>
+                <div id="dice2" class="dice dice2 pink"></div>
+                <div class="button"><a class="diceRoller" href="#game">Roll Dice</a></div>
+            </div>
+        </div>
+
+        <!-- duel mode -->
+        <div id="duel" class="container">
+            <div id="orange" class="dueller">
+                <div class="duelResult"></div>
+                <div class="button"><a class="diceRollerDuel">Roll Dice</a></div>
+            </div>
+            <div id="pink" class="dueller">
+                <div class="duelResult"></div>
+                <div class="button"><a class="diceRollerDuel">Roll Dice</a></div>
+            </div>
+                <div class="dice dice1 orange"></div>
+                <div class="dice dice2 pink"></div>
+                <div class="duelInstructions"></div>
+                <div class="instructions"></div>
+                <div class="rollInstructions"></div>
+        </div>
+
+        <!-- rules -->
+        <div id="rules" class="container">
+            <div class="goBack"><a href="#menu"></a></div>
+            <div id="content" class="customScroll">
+                <h1>How to play</h1>
+                <p>Firstly, don't be a dick</p>
+                <h2>General</h2>
+                <hr>
+                <p>Roll the dice until no one drinks as a result of your roll. If you roll nothing on the first roll of your turn, this is considered a 'virgin roll' - drink and roll again.</p>
+                <h2>Three Man</h2>
+                <hr>
+                <p>When a <span class="dice orange" name="1"></span><span class="dice pink" name="2"></span> are rolled, this person becomes the Three Man. They must drink to introduce themselves, and put on a silly hat.</p>
+                <ul>
+                    <li>Any time a <span class="dice orange" name="3"></span> appears on either dice, the Three Man drinks</li>
+                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span>, mean the Three Man must drink 3 - <i>"3 for 3 man"</i></li>
+                    <li>If the current Three Man rolls a <span class="dice orange" name="1"></span><span class="dice pink" name="2"></span>, then he/she gets to nominate a new Three Man</li>
+                    <li>Any time a new Three Man is introduced, the current and new Three Man must drink - <i>"Salutations"</i></li>
+                    <li>Under no circumstances is the Three Man allowed to stop playing while they are the current Three Man</li>
+                </ul>
+                <h2>Social - 10</h2>
+                <hr>
+                <p>Any time a total of 10 is rolled, everyone playing must drink.</p>
+                <h2>Duels</h2>
+                <hr>
+                <p>Two players must duel by each rolling a dice, with the loser drinking the difference. The roll is also counted as a roll from the person who set up the duel. You could become Three Man as a result of the duel!</p>
+                <p>Duels occur on the following double rolls</p>
+                <ul>
+                    <li><span class="dice orange" name="4"></span><span class="dice pink" name="4"></span></li>
+                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span> (if there is no current Three Man)</li>
+                    <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> (if there is no current Three Man)</li>
+                </ul>
+                <h2>Doubles</h2>
+                <hr>
+                <ul>
+                    <li><span class="dice orange" name="1"></span><span class="dice pink" name="1"></span> Two drinks for me</li>
+                    <li><span class="dice orange" name="2"></span><span class="dice pink" name="2"></span> Two drinks for two different players</li>
+                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span> Three drinks for Three Man</li>
+                    <li><span class="dice orange" name="4"></span><span class="dice pink" name="4"></span> Duel</li>
+                    <li><span class="dice orange" name="5"></span><span class="dice pink" name="5"></span> Social - everyone drink</li>
+                    <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> Two drinks for everyone, except Three Man</li>
+
+                </ul>
+                <h2>7/11</h2>
+                <hr>
+                <p>Player to the right of you takes a drink.</p>
+                <ul>
+                    <li><span class="dice orange" name="2"></span><span class="dice pink" name="5"></span></li>
+                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="4"></span></li>
+                    <li><span class="dice orange" name="6"></span><span class="dice pink" name="1"></span></li>
+                </ul>
+                <p>Player to the left of you takes a drink.</p>
+                <ul>
+                    <li><span class="dice orange" name="5"></span><span class="dice pink" name="6"></span></li>
+                </ul>                
+                <h2>Additional rules</h2>
+                <hr>
+                <p>There are some additional courtesy rules to play by.</p>
+                <ul>
+                    <li>Do not touch the phone unless it is your turn, or take a drink (the owner of the phone is exempt from this rule)</li>
+                    <li>If you accept the phone from someone's hands, then you must finish your drink</li>
+                </ul>
+                <h4>Off the table</h4>
+                <p>In the tabletop version of Three Man, if you roll the dice off the table you must either finish your drink or become the new Three Man (or both).<br>
+                If you wish, you can play with a 1% chance of someone rolling off the table by selecting the rules below.</p>
+                <div id="options">
+                    <label for='finishDrink'>Finish Drink</label><input type="checkbox" id="finishDrink" class="js-switch"> <br>
+                    <label for='become3Man'>Become Three Man</label><input type="checkbox" id="become3Man" class="js-switch">  
+                </div>
+                <div class="button"><a href="#game">LETS GET DRUNK</a></div>
+
+            </div>
+        </div>        
+
+        <!-- menu -->
+        <div id="menu" class="container">
+            <div id="startGame">
+                <div class="button"><a href="#game">Start</a></div>
+                <div class="button"><a href="#rules">How to play</a></div>
+            </div>
+        </div>
+    </div>
+    <footer>
+    </footer>
+      
+    
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>        
+    <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
+    <script type="text/javascript" src="js/smoothState.js"></script>    
+    <script type="text/javascript" src="js/transition.js"></script>             
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/ruleset.js"></script>    
+    <script type="text/javascript" src="js/config.js"></script>
+    <script src="js/switchery.min.js"></script>
+
+    
+    <script type="text/javascript">
+        //app.initialize();
+        initGame.init();
+
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+
+        elems.forEach(function(html) {
+            var switchery = new Switchery(html);
+        });
+
+        var check3ManSwitch = document.querySelector('#become3Man');
+        var finishDrinkSwitch = document.querySelector('#finishDrink');
+        
+        check3ManSwitch.onchange = function() {
+            offTableNew3Man = check3ManSwitch.checked;
+        };
+        finishDrinkSwitch.onchange = function() {
+            offTableFinishDrink = finishDrinkSwitch.checked;
+        };        
+    </script>
+</body>
+
+</html>

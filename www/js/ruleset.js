@@ -11,6 +11,17 @@ var selectedDoors = [];
 var virgin = true;
 var diceRolled = false;
 
+var offTableNew3Man = false;
+var offTableFinishDrink = false;
+
+var audio = {};
+audio["duelStart"] = new Audio();
+audio["duelStart"].src = "audio/its-time-to-duel.mp3";
+
+//vibrate
+navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+
 var initGame = {
     init: function() {
 
@@ -32,10 +43,40 @@ var initGame = {
 
                         //take us to duel page
                         window.location.hash = '#duel';
-                        return
+
+                        audio["duelStart"].play();
+                        return false;
                     };
 
                     diceRolled = true; //stop double clicking                 
+
+                    //check the 1% off the table rule
+                    if( offTableNew3Man == true || offTableFinishDrink == true) {
+                        var offTableRoll = Math.floor(Math.random() * 100) + 1
+                        console.log(offTableRoll);
+                        //1/100 means 1%
+                        if (offTableRoll == 1) {
+                            $('.instructions').html('You rolled off the table...<br>'); 
+                            
+                            if (offTableNew3Man == true) {
+                                $('.instructions').append('You are the new Three Man! Take a drink and roll again<br>');
+                            }
+                            if (offTableFinishDrink == true) {
+                                $('.instructions').append('Finish your drink and roll again');
+                            }
+
+                            if (navigator.vibrate) {
+                                navigator.vibrate(1500);
+                            };                            
+                            $('.rollInstructions').text('Roll again');   
+
+                            $('body').addClass('offTable');
+                            $('.results').fadeIn('fast');
+                            
+                            return false;              
+                        }
+                    }
+
                     rollDice();
                     diceRolled = true; 
                     gameFunctions[diceRoll[0]]();       
@@ -45,6 +86,8 @@ var initGame = {
                     $('.dice2').attr('name', diceRoll[1]);
 
                     $('body').addClass('teal');
+                    $('body').removeClass('teal');
+                    
                     $('#diceResult').text(diceCombined);
                     $('.results').fadeIn('fast');
                 };
@@ -98,7 +141,7 @@ var initGame = {
                     $('#diceResult').text(diceCombined);
                     gameFunctions[diceRoll[0]]();     
 
-                    $('#duel .rollInstructions').html('<a class="diceRoller" href="#game">Pass phone back</a>');
+                    $('#duel .rollInstructions').html('<a class="diceRoller" href="#game">Pass device back</a>');
                     $('.rollInstructions').addClass('passPhone');
 
                     $('.passPhone').on('click.remove', function(e) {
@@ -135,7 +178,7 @@ var gameFunctions = {
             gameFunctions.threeman();
         } else if (diceRoll[1] == 3) {
             //4 nothing
-            gameFunctions.checkVirgin();
+            gameFunctions.check3man();
         } else if (diceRoll[1] == 4) {
             //5 nothing
             gameFunctions.checkVirgin();
@@ -156,7 +199,7 @@ var gameFunctions = {
             gameFunctions.twoForTwo();
         } else if (diceRoll[1] == 3) {
             //5 - nothing
-            gameFunctions.checkVirgin();
+            gameFunctions.check3man();
         } else if (diceRoll[1] == 4) {
             //6 nothing
             gameFunctions.checkVirgin();
@@ -177,23 +220,25 @@ var gameFunctions = {
             //5 nothing
             gameFunctions.check3man();
         } else if (diceRoll[1] == 3) {
+            //6
             if (threeManExists == true) {
                 $('.instructions').text('Threeman drink 3x!');
                 $('.rollInstructions').text('Roll again');
-                gameFunctions.checkVirgin();
-                
             } else {
                 gameFunctions.duel();
             }
         } else if (diceRoll[1] == 4) {
+            //7
             gameFunctions.toLeft();
             if (threeManExists == true) {
                 $('.instructions').append('<br> and Threeman drinks!');
                 $('.rollInstructions').text('Roll again');            
             }
         } else if (diceRoll[1] == 5) {
+            //8
             gameFunctions.check3man();
         } else if (diceRoll[1] == 6) {
+            //9
             gameFunctions.check3man();
         }
     },
@@ -222,7 +267,7 @@ var gameFunctions = {
         } else if (diceRoll[1] == 2) {
             gameFunctions.toLeft();
         } else if (diceRoll[1] == 3) {
-            gameFunctions.checkVirgin();
+            gameFunctions.check3man();
         } else if (diceRoll[1] == 4) {
             gameFunctions.checkVirgin();
         } else if (diceRoll[1] == 5) {
@@ -285,8 +330,8 @@ var gameFunctions = {
         console.log('Duel function run');        
         virgin = false;
         diceRoll = [];//reset dice roll
-        $('.instructions').html('Pick 2 to people duel<br>Loser drinks the difference');
-        $('.rollInstructions').text('Pass phone to Duellers'); 
+        $('.instructions').html('Pick 2 people to duel<br>Loser drinks the difference');
+        $('.rollInstructions').text('Pass device to Duellers'); 
         $('.rollInstructions').addClass('duelTime'); 
     },
     toLeft: function() {
@@ -326,8 +371,10 @@ var gameFunctions = {
                 console.log('----------');
                 console.log('NEW PLAYER');
                 console.log('----------');            
-                $('.rollInstructions').text('<- Pass phone left');
-                
+                $('.rollInstructions').text('<- Pass device left');
+                if (navigator.vibrate) {
+                    navigator.vibrate(500);
+                };
                 $('.rollInstructions').addClass('passPhone');
                 $('.passPhone').on('click.remove', function(e) {
                     // reset style back to start
@@ -341,8 +388,10 @@ var gameFunctions = {
             }
         }
     },
-    resetDice: function() {
+    offTable: function() {
 
+    },
+    resetDice: function() {
         initGame.init();
     }
 }

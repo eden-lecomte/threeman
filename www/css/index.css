@@ -36,6 +36,7 @@ body {
     background: -moz-radial-gradient(center, ellipse cover,  #2E3242 0%, #211f34 100%); /* FF3.6-15 */
     background: -webkit-radial-gradient(center, ellipse cover,  #2E3242 0%,#211f34 100%); /* Chrome10-25,Safari5.1-6 */
     background: radial-gradient(ellipse at center,  #2E3242 0%,#211f34 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background-color: #211f34; /* Old browsers */
 
 
     background-attachment:fixed;
@@ -53,6 +54,10 @@ body {
 
 .teal {
     background: #aff2d1;
+}
+
+.offTable {
+    background: #e81f7b;
 }
 
 /* Portrait layout (default) */
@@ -220,6 +225,7 @@ footer {
         text-decoration: none;
         color: #aff2d1;      
         padding-top: 0.9em;
+
         display: block;
     }
     .button a:active {
@@ -227,6 +233,8 @@ footer {
         color: #3a394d;      
         /*padding-top: 0.9em;*/
         /*display: block;*/
+        padding-top: 0.7em;
+        display: block;
     }    
 
 #rules {
@@ -484,12 +492,12 @@ footer {
     color: #e81f7b;
 }
 #duel .instructions {
-    top: 50vh;
+    top: 45vh;
 }
 
 .duelInstructions {
     position: absolute;
-    top:45vh;
+    top: 40vh;
     text-align: center;
     display: block;
     width: 90%;

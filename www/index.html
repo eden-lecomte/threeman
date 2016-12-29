@@ -190,6 +190,16 @@
         elems.forEach(function(html) {
             var switchery = new Switchery(html);
         });
+
+        var check3ManSwitch = document.querySelector('#become3Man');
+        var finishDrinkSwitch = document.querySelector('#finishDrink');
+        
+        check3ManSwitch.onchange = function() {
+            offTableNew3Man = check3ManSwitch.checked;
+        };
+        finishDrinkSwitch.onchange = function() {
+            offTableFinishDrink = finishDrinkSwitch.checked;
+        };        
     </script>
 </body>
 
