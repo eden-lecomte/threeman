@@ -42,6 +42,7 @@
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />  
     <link rel="stylesheet" type="text/css" href="css/transitions.css" />
     <link rel="stylesheet" href="css/switchery.min.css" />
+    <link rel="stylesheet" href="css/dice.css" />
 
     <title>Three man</title>
 </head>
@@ -50,19 +51,101 @@
     <header>
     </header>
     <div class="app">
+        <!-- test -->
+        <div id="test" class="container">
+            <div class="goBack"><a href="#menu"></a></div>
+                <div class="button"><a class="diceRoller">Roll Dice</a></div>
+
+            
+        </div>
+
         <!-- game -->
         <div id="game" class="container">
             <div class="goBack"><a href="#menu"></a></div>
             <div class="results">
-                <div id="diceResult"></div>
-                <div class="dice dice1 orange"></div>
-                <div class="dice dice2 pink"></div>
+                <div id="diceResult"></div>  
+                <div id="dice1" class="dice dice1 orange"></div>
+                <div id="dice2" class="dice dice2 pink"></div>                              
                 <div class="instructions"></div>
                 <div class="diceRoller rollInstructions"></div>
             </div>
             <div class="diceroll">
-                <div id="dice1" class="dice dice1 orange"></div>
-                <div id="dice2" class="dice dice2 pink"></div>
+
+                <div class="dice dice1 solid">
+                    <div class="cube">
+                        <div class="side front">
+                        <div class="point pxcenter pycenter one red"></div>
+                        </div>
+                        <div class="side top">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                        <div class="side left">
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        </div>
+                        <div class="side right">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        <div class="point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side bottom">
+                        <div class="red point ptop pright"></div>
+                        <div class="red point pbottom pleft"></div>
+                        <div class="red point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side back">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pycenter pleft"></div>
+                        <div class="point pycenter pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dice dice2 solid">
+                    <div class="cube">
+                        <div class="side front">
+                        <div class="point pxcenter pycenter one red"></div>
+                        </div>
+                        <div class="side top">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                        <div class="side left">
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        </div>
+                        <div class="side right">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        <div class="point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side bottom">
+                        <div class="red point ptop pright"></div>
+                        <div class="red point pbottom pleft"></div>
+                        <div class="red point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side back">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pycenter pleft"></div>
+                        <div class="point pycenter pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                    </div>
+                </div>                
                 <div class="button"><a class="diceRoller" href="#game">Roll Dice</a></div>
             </div>
         </div>

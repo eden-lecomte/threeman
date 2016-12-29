@@ -85,15 +85,66 @@ var initGame = {
                     $('.dice1').attr('name', diceRoll[0]);
                     $('.dice2').attr('name', diceRoll[1]);
 
-                    $('body').addClass('teal');
-                    $('body').removeClass('teal');
-                    
-                    $('#diceResult').text(diceCombined);
-                    $('.results').fadeIn('fast');
+                    //NEW DICE CODE
+                    angle = {};
+                    $(this).data('n', $(this).data('n') ? 0 : 5);
+                    var n = $(this).data('n');
+                    $('.cube').attr('style', '');
+                    angle = { x: 360 * n, y: 360 * n };
+                    angle1 = { x: 360 * n, y: 360 * n }
+
+                    switch (diceRoll[0]) {
+                        case 1:
+                        break;
+                        case 2:
+                        angle.y = 360 * n + 90;
+                        break;
+                        case 3:
+                        angle.x = 360 * n + 90;
+                        break;
+                        case 4:
+                        angle.x = 360 * n - 90;
+                        break;
+                        case 5:
+                        angle.y = 360 * n - 90;
+                        break;
+                        case 6:
+                        angle.x = 360 * n + 180;
+                        break;
+                    }
+                    switch (diceRoll[1]) {
+                        case 1:
+                        break;
+                        case 2:
+                        angle1.y = 360 * n + 90;
+                        break;
+                        case 3:
+                        angle1.x = 360 * n + 90;
+                        break;
+                        case 4:
+                        angle1.x = 360 * n - 90;
+                        break;
+                        case 5:
+                        angle1.y = 360 * n - 90;
+                        break;
+                        case 6:
+                        angle1.x = 360 * n + 180;
+                        break;
+                    }
+                    $('.dice1 .cube').css({ '-webkit-transform': 'translateZ(-100px) rotateX(' + angle.x + 'deg) rotateY(' + angle.y + 'deg)', '-webkit-transition': '3s' })
+                    $('.dice2 .cube').css({ '-webkit-transform': 'translateZ(-100px) rotateX(' + angle1.x + 'deg) rotateY(' + angle1.y + 'deg)', '-webkit-transition': '3s' })
+
+                    //NEW DICE CODE END
                 };
                 diceRolled = false; //stop double clicking                 
             }
-            
+            $(".cube").bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){ 
+                $('body').addClass('teal');
+                $('body').removeClass('teal');
+                
+                $('#diceResult').text(diceCombined);
+                $('.results').fadeIn('fast');      
+            });
         });
 
         //duel init
