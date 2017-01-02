@@ -13,6 +13,9 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.drinks.threeman"
         },
+        "cordova-plugin-device-motion": {
+            "PACKAGE_NAME": "com.drinks.threeman"
+        },
         "cordova-plugin-device-orientation": {
             "PACKAGE_NAME": "com.drinks.threeman"
         },
