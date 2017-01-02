@@ -7,16 +7,13 @@ var globalRules = {
 
 
 var threeManExists = false;
-var selectedDoors = [];
 var virgin = true;
 var diceRolled = false;
 
 var offTableNew3Man = false;
 var offTableFinishDrink = false;
 
-var audio = {};
-audio["duelStart"] = new Audio();
-audio["duelStart"].src = "audio/its-time-to-duel.mp3";
+
 
 //vibrate
 navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
@@ -24,11 +21,18 @@ navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mo
 
 var initGame = {
     init: function() {
+        if (soundOn == true) {
+           audio["welcome"].play();
+        };
 
         virgin = true;
         diceRolled = false; 
 
         $('.diceRoller').on('click', function(e) {
+            $("#game .dice2 .cube").unbind();
+
+            $('body').removeClass('teal');
+
             if ($(this).hasClass('passPhone') == false ) {
                                 
                 if (diceRolled == false){
@@ -44,7 +48,10 @@ var initGame = {
                         //take us to duel page
                         window.location.hash = '#duel';
 
-                        audio["duelStart"].play();
+                        if (soundOn == true) {
+                            audio["duelStart"].play();
+                        };
+                        
                         return false;
                     };
 
@@ -52,34 +59,9 @@ var initGame = {
                     $('.results').fadeOut('fast');      
                     $('.diceroll .diceRoller').parent().fadeOut('fast');      
 
-                                    
-                    //check the 1% off the table rule
-                    if( offTableNew3Man == true || offTableFinishDrink == true) {
-                        var offTableRoll = Math.floor(Math.random() * 100) + 1
-                        console.log(offTableRoll);
-                        //1/100 means 1%
-                        if (offTableRoll == 1) {
-                            $('.instructions').html('You rolled off the table...<br>'); 
-                            
-                            if (offTableNew3Man == true) {
-                                $('.instructions').append('You are the new Three Man! Take a drink and roll again<br>');
-                            }
-                            if (offTableFinishDrink == true) {
-                                $('.instructions').append('Finish your drink and roll again');
-                            }
-
-                            if (navigator.vibrate) {
-                                navigator.vibrate(1500);
-                            };                            
-                            $('.rollInstructions').text('Roll again');   
-
-                            $('body').addClass('offTable');
-                            $('.results').fadeIn('fast');
-                            
-                            return false;              
-                        }
-                    }
-
+                    //check off the table rules
+                    gameFunctions.offTable();                
+                    
                     rollDice();
 
                     //update dice with correct angles to rotate to
@@ -94,7 +76,7 @@ var initGame = {
             }
             $("#game .dice2 .cube").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){ 
                 $('body').addClass('teal');
-                $('body').removeClass('teal');
+                $('body').removeClass('offTable');
 
                 //update the dice image
                 $('.dice1').attr('name', diceRoll[0]);
@@ -315,8 +297,9 @@ var gameFunctions = {
         } else if (diceRoll[1] == 3) {
             //6
             if (threeManExists == true) {
-                $('.instructions').text('Threeman drink 3x!');
+                $('.instructions').text('Three drinks for Threeman!');
                 $('.rollInstructions').text('Roll again');
+                audioInit.doubleThrees();
             } else {
                 gameFunctions.duel();
             }
@@ -391,7 +374,8 @@ var gameFunctions = {
     doubleSix: function() {
         if (threeManExists == true) {
             $('.instructions').text('Everyone except Threeman, drink 2!');  
-            $('.rollInstructions').text('Roll again');                              
+            $('.rollInstructions').text('Roll again');   
+            audioInit.doubleSix();
         } else {
             gameFunctions.checkVirgin();
         }
@@ -400,7 +384,8 @@ var gameFunctions = {
         console.log('Check for a 3 man function run');
         if (threeManExists == true) {
             $('.instructions').text('Threeman drinks!');
-            $('.rollInstructions').text('Roll again');            
+            $('.rollInstructions').text('Roll again');     
+            audioInit.threeIsRolled();
         } else {
             //nothing?
             gameFunctions.checkVirgin();
@@ -411,13 +396,15 @@ var gameFunctions = {
         virgin = false;
         threeManExists = true;
         $('.instructions').text('You are the new Threeman! Put on the sweet hat, and drink to say hello!');
-        $('.rollInstructions').text('Roll again');        
+        $('.rollInstructions').text('Roll again');   
+        audioInit.newThreeman();     
     },
     social: function() {
         console.log('Social function run');
         virgin = false;
         $('.instructions').text('Everyone drink!');
         $('.rollInstructions').text('Roll again');
+        audioInit.social();
     },
     duel: function() {
         console.log('Duel function run');        
@@ -432,35 +419,40 @@ var gameFunctions = {
         virgin = false;
         $('.rollInstructions').text('Roll again');        
         $('.instructions').text('Drink to the left!');
+        audioInit.seven();
     },
     toRight: function() {
         console.log('To the right function run');
         virgin = false;
         $('.instructions').text('Drink to the right!');
         $('.rollInstructions').text('Roll again');
+        audioInit.eleven();        
     },
     twoForTwo: function() {
         console.log('Two for two');
         virgin = false;
         $('.instructions').text('Pick 2 people to drink 2 drinks');
         $('.rollInstructions').text('Roll again');
+        audioInit.twoforTwo();
     },
     twoforMe: function() {
         console.log('Two for Me');
         virgin = false;
         $('.instructions').text('Two drinks for you!');
         $('.rollInstructions').text('Roll again');
-        
+        audioInit.twoforMe();
     },    
     checkVirgin: function() {
         if (window.location.hash != '#duel') {
             console.log('Virgin check run');
             if (virgin == true) {
-                $('.instructions').text('Virgin roll, drink and go again!')
                 virgin = false; 
+                $('.instructions').text('Virgin roll, drink and go again!')
                 $('.rollInstructions').text('Roll again');
+                audioInit.virginRoll();
             } else {
                 $('.instructions').html('Nothing... <br>Next players turn!')
+                audioInit.nextPlayer();
                 console.log('----------');
                 console.log('NEW PLAYER');
                 console.log('----------');            
@@ -469,6 +461,7 @@ var gameFunctions = {
                     navigator.vibrate(500);
                 };
                 $('.rollInstructions').addClass('passPhone');
+
                 $('.passPhone').on('click.remove', function(e) {
                     // reset style back to start
                     $('body').removeClass('teal');
@@ -480,66 +473,95 @@ var gameFunctions = {
                 });
                 
                 virgin = true;                    
+                setTimeout( function() {
+                    $('.passPhone').click();
+                }, 5000);                
             }
         }
     },
     offTable: function() {
+        //check the 1% off the table rule
+        if( offTableNew3Man == true || offTableFinishDrink == true) {
+            var offTableRoll = Math.floor(Math.random() * 100) + 1
+            console.log(offTableRoll);
+            //1/100 means 1%
+            if (offTableRoll == 1) {
+                $('.instructions').html('You rolled off the table...<br>'); 
+                
+                if (offTableNew3Man == true) {
+                    $('.instructions').append('You are the new Three Man! Take a drink and roll again<br>');
+                }
+                if (offTableFinishDrink == true) {
+                    $('.instructions').append('Finish your drink and roll again');
+                }
 
+                if (navigator.vibrate) {
+                    navigator.vibrate(1500);
+                };                            
+                $('.rollInstructions').text('Roll again');   
+
+                $('body').addClass('offTable');
+                $('.results').fadeIn('fast');
+                
+                return false;              
+            }
+        }
     },
     resetDice: function() {
         initGame.init();
-    }
+    },
+
 };
 
 
-    function setDiceAngle() {
-        //NEW DICE CODE
-        angle = {};
-        angle1 = {};
+function setDiceAngle() {
+    //NEW DICE CODE
+    angle = {};
+    angle1 = {};
 
-        $(this).data('n', $(this).data('n') ? 0 : 5);
-        var n = $(this).data('n');
-        $('.cube').attr('style', '');
-        angle = { x: 360 * n, y: 360 * n };
-        angle1 = { x: 360 * n, y: 360 * n }
+    $(this).data('n', $(this).data('n') ? 0 : 5);
+    var n = $(this).data('n');
+    $('.cube').attr('style', '');
+    angle = { x: 360 * n, y: 360 * n };
+    angle1 = { x: 360 * n, y: 360 * n }
 
-        switch (diceRoll[0]) {
-            case 1:
-            break;
-            case 2:
-            angle.y = 360 * n + 90;
-            break;
-            case 3:
-            angle.x = 360 * n + 90;
-            break;
-            case 4:
-            angle.x = 360 * n - 90;
-            break;
-            case 5:
-            angle.y = 360 * n - 90;
-            break;
-            case 6:
-            angle.x = 360 * n + 180;
-            break;
-        }
-        switch (diceRoll[1]) {
-            case 1:
-            break;
-            case 2:
-            angle1.y = 360 * n + 90;
-            break;
-            case 3:
-            angle1.x = 360 * n + 90;
-            break;
-            case 4:
-            angle1.x = 360 * n - 90;
-            break;
-            case 5:
-            angle1.y = 360 * n - 90;
-            break;
-            case 6:
-            angle1.x = 360 * n + 180;
-            break;
-        }
-    };
+    switch (diceRoll[0]) {
+        case 1:
+        break;
+        case 2:
+        angle.y = 360 * n + 90;
+        break;
+        case 3:
+        angle.x = 360 * n + 90;
+        break;
+        case 4:
+        angle.x = 360 * n - 90;
+        break;
+        case 5:
+        angle.y = 360 * n - 90;
+        break;
+        case 6:
+        angle.x = 360 * n + 180;
+        break;
+    }
+    switch (diceRoll[1]) {
+        case 1:
+        break;
+        case 2:
+        angle1.y = 360 * n + 90;
+        break;
+        case 3:
+        angle1.x = 360 * n + 90;
+        break;
+        case 4:
+        angle1.x = 360 * n - 90;
+        break;
+        case 5:
+        angle1.y = 360 * n - 90;
+        break;
+        case 6:
+        angle1.x = 360 * n + 180;
+        break;
+    }
+};
 

@@ -42,27 +42,176 @@
     <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />  
     <link rel="stylesheet" type="text/css" href="css/transitions.css" />
     <link rel="stylesheet" href="css/switchery.min.css" />
+    <link rel="stylesheet" href="css/dice.css" />
+
 
     <title>Three man</title>
 </head>
 
 <body>
-    <header>
-    </header>
     <div class="app">
+
         <!-- game -->
         <div id="game" class="container">
-            <div class="goBack"><a href="#menu"></a></div>
+            <div class="goBack"><a href="index.html"></a></div>
+            <div class="sound"><i class="fa fa-volume-up fa-3x" aria-hidden="true"></i></div>
+
             <div class="results">
-                <div id="diceResult"></div>
-                <div class="dice dice1 orange"></div>
-                <div class="dice dice2 pink"></div>
+                <div id="diceResult"></div>  
+                <div class="dice dice1 solid">
+                    <div class="cube">
+                        <div class="side front">
+                        <div class="point pxcenter pycenter one red"></div>
+                        </div>
+                        <div class="side top">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                        <div class="side left">
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        </div>
+                        <div class="side right">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        <div class="point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side bottom">
+                        <div class="red point ptop pright"></div>
+                        <div class="red point pbottom pleft"></div>
+                        <div class="red point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side back">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pycenter pleft"></div>
+                        <div class="point pycenter pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dice dice2 solid">
+                    <div class="cube">
+                        <div class="side front">
+                        <div class="point pxcenter pycenter one red"></div>
+                        </div>
+                        <div class="side top">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                        <div class="side left">
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        </div>
+                        <div class="side right">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        <div class="point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side bottom">
+                        <div class="red point ptop pright"></div>
+                        <div class="red point pbottom pleft"></div>
+                        <div class="red point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side back">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pycenter pleft"></div>
+                        <div class="point pycenter pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                    </div>
+                </div>                            
                 <div class="instructions"></div>
                 <div class="diceRoller rollInstructions"></div>
             </div>
             <div class="diceroll">
-                <div id="dice1" class="dice dice1 orange"></div>
-                <div id="dice2" class="dice dice2 pink"></div>
+                <div class="dice dice1 solid">
+                    <div class="cube">
+                        <div class="side front">
+                        <div class="point pxcenter pycenter one red"></div>
+                        </div>
+                        <div class="side top">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                        <div class="side left">
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        </div>
+                        <div class="side right">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        <div class="point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side bottom">
+                        <div class="red point ptop pright"></div>
+                        <div class="red point pbottom pleft"></div>
+                        <div class="red point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side back">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pycenter pleft"></div>
+                        <div class="point pycenter pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dice dice2 solid">
+                    <div class="cube">
+                        <div class="side front">
+                        <div class="point pxcenter pycenter one red"></div>
+                        </div>
+                        <div class="side top">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                        <div class="side left">
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        </div>
+                        <div class="side right">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        <div class="point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side bottom">
+                        <div class="red point ptop pright"></div>
+                        <div class="red point pbottom pleft"></div>
+                        <div class="red point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side back">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pycenter pleft"></div>
+                        <div class="point pycenter pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                    </div>
+                </div>                
                 <div class="button"><a class="diceRoller" href="#game">Roll Dice</a></div>
             </div>
         </div>
@@ -77,9 +226,80 @@
                 <div class="duelResult"></div>
                 <div class="button"><a class="diceRollerDuel">Roll Dice</a></div>
             </div>
-                <div class="dice dice1 orange"></div>
-                <div class="dice dice2 pink"></div>
-                <div class="duelInstructions"></div>
+                <div class="dice dice1 solid">
+                    <div class="cube">
+                        <div class="side front">
+                        <div class="point pxcenter pycenter one red"></div>
+                        </div>
+                        <div class="side top">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                        <div class="side left">
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        </div>
+                        <div class="side right">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        <div class="point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side bottom">
+                        <div class="red point ptop pright"></div>
+                        <div class="red point pbottom pleft"></div>
+                        <div class="red point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side back">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pycenter pleft"></div>
+                        <div class="point pycenter pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dice dice2 solid">
+                    <div class="cube">
+                        <div class="side front">
+                        <div class="point pxcenter pycenter one red"></div>
+                        </div>
+                        <div class="side top">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                        <div class="side left">
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        </div>
+                        <div class="side right">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        <div class="point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side bottom">
+                        <div class="red point ptop pright"></div>
+                        <div class="red point pbottom pleft"></div>
+                        <div class="red point pxcenter pycenter"></div>
+                        </div>
+                        <div class="side back">
+                        <div class="point ptop pleft"></div>
+                        <div class="point ptop pright"></div>
+                        <div class="point pycenter pleft"></div>
+                        <div class="point pycenter pright"></div>
+                        <div class="point pbottom pleft"></div>
+                        <div class="point pbottom pright"></div>
+                        </div>
+                    </div>
+                </div>                   <div class="duelInstructions"></div>
                 <div class="instructions"></div>
                 <div class="rollInstructions"></div>
         </div>
@@ -87,14 +307,16 @@
         <!-- rules -->
         <div id="rules" class="container">
             <div class="goBack"><a href="#menu"></a></div>
+            <div class="sound"><i class="fa fa-volume-up fa-3x" aria-hidden="true"></i></div>
+            
             <div id="content" class="customScroll">
                 <h1>How to play</h1>
                 <p>Firstly, don't be a dick</p>
                 <h2>General</h2>
-                <hr>
+                <!-- <hr> -->
                 <p>Roll the dice until no one drinks as a result of your roll. If you roll nothing on the first roll of your turn, this is considered a 'virgin roll' - drink and roll again.</p>
                 <h2>Three Man</h2>
-                <hr>
+                <!-- <hr> -->
                 <p>When a <span class="dice orange" name="1"></span><span class="dice pink" name="2"></span> are rolled, this person becomes the Three Man. They must drink to introduce themselves, and put on a silly hat.</p>
                 <ul>
                     <li>Any time a <span class="dice orange" name="3"></span> appears on either dice, the Three Man drinks</li>
@@ -104,10 +326,10 @@
                     <li>Under no circumstances is the Three Man allowed to stop playing while they are the current Three Man</li>
                 </ul>
                 <h2>Social - 10</h2>
-                <hr>
+                <!-- <hr> -->
                 <p>Any time a total of 10 is rolled, everyone playing must drink.</p>
                 <h2>Duels</h2>
-                <hr>
+                <!-- <hr> -->
                 <p>Two players must duel by each rolling a dice, with the loser drinking the difference. The roll is also counted as a roll from the person who set up the duel. You could become Three Man as a result of the duel!</p>
                 <p>Duels occur on the following double rolls</p>
                 <ul>
@@ -116,7 +338,7 @@
                     <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> (if there is no current Three Man)</li>
                 </ul>
                 <h2>Doubles</h2>
-                <hr>
+                <!-- <hr> -->
                 <ul>
                     <li><span class="dice orange" name="1"></span><span class="dice pink" name="1"></span> Two drinks for me</li>
                     <li><span class="dice orange" name="2"></span><span class="dice pink" name="2"></span> Two drinks for two different players</li>
@@ -127,7 +349,7 @@
 
                 </ul>
                 <h2>7/11</h2>
-                <hr>
+                <!-- <hr> -->
                 <p>Player to the right of you takes a drink.</p>
                 <ul>
                     <li><span class="dice orange" name="2"></span><span class="dice pink" name="5"></span></li>
@@ -139,7 +361,7 @@
                     <li><span class="dice orange" name="5"></span><span class="dice pink" name="6"></span></li>
                 </ul>                
                 <h2>Additional rules</h2>
-                <hr>
+                <!-- <hr> -->
                 <p>There are some additional courtesy rules to play by.</p>
                 <ul>
                     <li>Do not touch the phone unless it is your turn, or take a drink (the owner of the phone is exempt from this rule)</li>
@@ -152,7 +374,7 @@
                     <label for='finishDrink'>Finish Drink</label><input type="checkbox" id="finishDrink" class="js-switch"> <br>
                     <label for='become3Man'>Become Three Man</label><input type="checkbox" id="become3Man" class="js-switch">  
                 </div>
-                <div class="button"><a href="#game">LETS GET DRUNK</a></div>
+                <div class="button"><a href="#game">GET DRUNK!</a></div>
 
             </div>
         </div>        
@@ -171,11 +393,10 @@
     
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>        
     <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
-    <script type="text/javascript" src="js/smoothState.js"></script>    
-    <script type="text/javascript" src="js/transition.js"></script>             
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/ruleset.js"></script>    
+    <script type="text/javascript" src="js/audio.js"></script>    
     <script type="text/javascript" src="js/config.js"></script>
     <script src="js/switchery.min.js"></script>
 
@@ -183,7 +404,8 @@
     <script type="text/javascript">
         //app.initialize();
         initGame.init();
-
+        soundToggle();
+        
         var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
         elems.forEach(function(html) {

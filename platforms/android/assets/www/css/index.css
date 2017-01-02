@@ -54,10 +54,12 @@ body {
 
 .teal {
     background: #aff2d1;
+    background-color: #aff2d1;
 }
 
 .offTable {
-    background: #e81f7b;
+    background: #e81f7b;;
+    background-color: #e81f7b;
 }
 
 /* Portrait layout (default) */
@@ -100,6 +102,7 @@ body {
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
+    min-height: 90vh;
 }
 
 
@@ -107,50 +110,25 @@ body {
 
 
 h1 {
-    font-size:24px;
+    font-size:26px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
     padding:0px;
-    text-align:center;
+    /*text-align:center;*/
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.event {
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
+h2 {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.event.listening {
-    background-color:#333333;
-    display:block;
+p {
+    line-height: 24px;
 }
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
-}
-
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
-  
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}
-
 
 
 header {
@@ -170,24 +148,21 @@ footer {
 }
 
 #menu {
-    height: 60vh;
+    height: 45vh;
     text-align: middle;  
     background-image: url('../img/logo.png');
     background-size: 70vw;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center 20%;
 }
 
-#menu img {
-    width: 60%;
-
-}
 
 #startGame {
     position: absolute;
-    bottom: 0;
-    left: 15%;
-    width: 80%
+    bottom: 0px;
+    left: 10%;
+    width: 90%;
+    max-width: 500px;
 }
     .button {
         width: 100%;
@@ -195,11 +170,12 @@ footer {
         background-color: #3a394d;
         border: none;
         border-radius: 40px 40px 40px 40px;
-        height: 2.5em;
-        margin: 5px;
+        height: 3.2em;
+        margin-top: 30px;
         text-transform: uppercase;
         font-size: 1.5em;
         text-align: center;
+        letter-spacing: 3px;
     }
 
     .button:active {
@@ -209,31 +185,34 @@ footer {
     .button a {
         text-decoration: none;
         color: #aff2d1;      
-        padding-top: 0.7em;
+        padding-top: 0.9em;
         display: block;
+        height: 100%;
     }
     .button a:active {
         text-decoration: none;
         color: #3a394d;      
-        padding-top: 0.7em;
-        display: block;
     }    
 
 #rules {
-    width: 94vw;
-    padding: 0px 7%;
+    /*width: 94vw;*/
+    /*padding: 0px 7%;*/
+    width: 100%;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
 #rules > #content {
     overflow-y: scroll;
-    margin-top: 40px;
+    margin-top:80px;
     height: 85vh;
     
 }
 
 #rules ul {
     list-style: none;
-    padding-left: 10px;
+    padding-left: 0px;
+    line-height: 24px;
 }
 
 .customScroll {
@@ -265,16 +244,32 @@ footer {
     background: #3a394d; 
 }   
 
-.goBack a{
+.goBack {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 15px;
+    left: 40px;
+    height: 50px;
+    width: 50px;    
+}
+
+.goBack a {
+    position: fixed;
+    top: 15px;
+    left: 40px;
     height: 50px;
     width: 50px;
     background-image: url('../img/left-arrow.png');
     background-size: contain;
 }
 
+.sound {
+    position: fixed;
+    top: 15px;
+    right: 40px;
+    height: 50px;
+    width: 50px;
+    color: #e81f7b;
+}
 
 
 .diceSelection {
@@ -304,13 +299,13 @@ footer {
 .dice1 {
     position: fixed;
     top: 30vh;
-    left: 27vw;
+    left: 15%;
 }
 
 .dice2 {
     position: fixed;
     top: 30vh;
-    left: 55vw;
+    right: 15%;
 }
 
 .pink {
@@ -361,6 +356,11 @@ footer {
     width: 2em;
     height: 2em;
 } 
+
+#rules .button {
+    margin-bottom: 80px;
+}
+
 .results {
     width: 80vw;
     height: 80vh;
@@ -385,9 +385,6 @@ footer {
     z-index: 1000;
 }
 
-.results > .dice {
-    opacity: 0.8;
-}
 
 .instructions {
     position: absolute;
@@ -411,13 +408,13 @@ footer {
 }
 
 #diceResult {
-    font-size: 20em;
+    font-size: 70vw;
     color: #39394B;
     text-align: center;
 }
 
 #options > label {
-    width: 70vw;
+    width: 60vw;
     display: inline-block;
     padding-bottom: 20px;
 }
@@ -501,7 +498,7 @@ footer {
     }
 
     .diceroll > .button {
-        top: 70vh;
+        top: 60vh;
     }
 
     #diceResult {
@@ -518,8 +515,11 @@ footer {
     .dice2 {
         position: fixed;
         top: 23vh;
-        left: 55vw;
+        left: 60vw;
+    }
+
+    #diceResult {
+        font-size: 70vh;
     }
 }
-
 

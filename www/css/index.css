@@ -54,10 +54,12 @@ body {
 
 .teal {
     background: #aff2d1;
+    background-color: #aff2d1;
 }
 
 .offTable {
-    background: #e81f7b;
+    background: #e81f7b;;
+    background-color: #e81f7b;
 }
 
 /* Portrait layout (default) */
@@ -127,44 +129,6 @@ h2 {
 p {
     line-height: 24px;
 }
-
-
-.event {
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
-}
-
-.event.listening {
-    background-color:#333333;
-    display:block;
-}
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
-}
-
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
-  
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}
-
 
 
 header {
@@ -280,9 +244,17 @@ footer {
     background: #3a394d; 
 }   
 
-.goBack a{
+.goBack {
     position: fixed;
-    top: 40px;
+    top: 15px;
+    left: 40px;
+    height: 50px;
+    width: 50px;    
+}
+
+.goBack a {
+    position: fixed;
+    top: 15px;
     left: 40px;
     height: 50px;
     width: 50px;
@@ -290,6 +262,14 @@ footer {
     background-size: contain;
 }
 
+.sound {
+    position: fixed;
+    top: 15px;
+    right: 40px;
+    height: 50px;
+    width: 50px;
+    color: #e81f7b;
+}
 
 
 .diceSelection {
@@ -319,13 +299,13 @@ footer {
 .dice1 {
     position: fixed;
     top: 30vh;
-    left: 23vw;
+    left: 15%;
 }
 
 .dice2 {
     position: fixed;
     top: 30vh;
-    left: 55vw;
+    right: 15%;
 }
 
 .pink {
@@ -428,13 +408,13 @@ footer {
 }
 
 #diceResult {
-    font-size: 20em;
+    font-size: 70vw;
     color: #39394B;
     text-align: center;
 }
 
 #options > label {
-    width: 70vw;
+    width: 60vw;
     display: inline-block;
     padding-bottom: 20px;
 }
@@ -518,7 +498,7 @@ footer {
     }
 
     .diceroll > .button {
-        top: 70vh;
+        top: 60vh;
     }
 
     #diceResult {
@@ -535,7 +515,11 @@ footer {
     .dice2 {
         position: fixed;
         top: 23vh;
-        left: 55vw;
+        left: 60vw;
+    }
+
+    #diceResult {
+        font-size: 70vh;
     }
 }
 

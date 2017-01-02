@@ -49,18 +49,13 @@
 </head>
 
 <body>
-    <header>
-    </header>
     <div class="app">
-        <!-- test -->
-        <div id="test" class="container">
-            <div class="goBack"><a href="#menu"></a></div>
-            <div class="button"><a class="diceRoller">Roll Dice</a></div>           
-        </div>
 
         <!-- game -->
         <div id="game" class="container">
-            <div class="goBack"><a href="#menu"></a></div>
+            <div class="goBack"><a href="index.html"></a></div>
+            <div class="sound"><i class="fa fa-volume-up fa-3x" aria-hidden="true"></i></div>
+
             <div class="results">
                 <div id="diceResult"></div>  
                 <div class="dice dice1 solid">
@@ -312,6 +307,8 @@
         <!-- rules -->
         <div id="rules" class="container">
             <div class="goBack"><a href="#menu"></a></div>
+            <div class="sound"><i class="fa fa-volume-up fa-3x" aria-hidden="true"></i></div>
+            
             <div id="content" class="customScroll">
                 <h1>How to play</h1>
                 <p>Firstly, don't be a dick</p>
@@ -377,7 +374,7 @@
                     <label for='finishDrink'>Finish Drink</label><input type="checkbox" id="finishDrink" class="js-switch"> <br>
                     <label for='become3Man'>Become Three Man</label><input type="checkbox" id="become3Man" class="js-switch">  
                 </div>
-                <div class="button"><a href="#game">LETS GET DRUNK!</a></div>
+                <div class="button"><a href="#game">GET DRUNK!</a></div>
 
             </div>
         </div>        
@@ -396,11 +393,10 @@
     
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>        
     <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
-    <script type="text/javascript" src="js/smoothState.js"></script>    
-    <script type="text/javascript" src="js/transition.js"></script>             
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/ruleset.js"></script>    
+    <script type="text/javascript" src="js/audio.js"></script>    
     <script type="text/javascript" src="js/config.js"></script>
     <script src="js/switchery.min.js"></script>
 
@@ -408,7 +404,8 @@
     <script type="text/javascript">
         //app.initialize();
         initGame.init();
-
+        soundToggle();
+        
         var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
         elems.forEach(function(html) {
