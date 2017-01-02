@@ -1,5 +1,5 @@
 .dice {
-  position: relative;
+ /* position: relative;*/
   width: 100px;
   height: 100px;
   box-sizing: border-box;
@@ -21,19 +21,29 @@
   font-size: 60px;
 /*   background-color: rgba(255, 255, 255, 0.9); */
   background: hsla(246, 25%, 16%, 0.9);
-/*   box-shadow: inset 0 0 30px #C9C9C9; */
+  box-shadow: inset 0 0 10px #fe723f;
   box-sizing: border-box;
-  border: 10px solid hotpink;
+  border: 7px solid #fe723f;
+  border-radius: 4px;
 }
 
 .dice .side .point {
   width: 20%;
   height: 20%;
-  background-color: hotpink;
+  background-color: #fe723f;
   border-radius: 100%;
 /*   box-shadow: inset 5px 3px 10px rgba(0, 0, 0, 0.4); */
 /*   background-image: -webkit-radial-gradient(circle, #5694ff, #0045bc); */
-  position: absolute;
+  position: absolute;  
+}
+
+.dice2 .side {
+    border: 7px solid #e81f7b;
+    box-shadow: inset 0 0 10px #e81f7b;    
+}
+
+.dice2 .side .point {
+  background-color: #e81f7b;
 }
 
 .dice .side .point.one {
@@ -41,12 +51,12 @@
   height: 30%;
   top: 50% !important;
   left: 50% !important;
-  margin-left: -30px;
-  margin-top: -30px;
+  margin-left: -15px;
+  margin-top: -15px;
 }
 
 .dice .side .point.red {
-  background-image: -webkit-radial-gradient(circle, #e49b90, #d0513e); 
+  /*background-image: -webkit-radial-gradient(circle, #e49b90, #d0513e);  */
 }
 
 .dice .side .point.ptop {

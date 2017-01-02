@@ -48,8 +48,11 @@ var initGame = {
                         return false;
                     };
 
-                    diceRolled = true; //stop double clicking                 
+                    diceRolled = true; //stop double clicking 
+                    $('.results').fadeOut('fast');      
+                    $('.diceroll .diceRoller').parent().fadeOut('fast');      
 
+                                    
                     //check the 1% off the table rule
                     if( offTableNew3Man == true || offTableFinishDrink == true) {
                         var offTableRoll = Math.floor(Math.random() * 100) + 1
@@ -78,20 +81,55 @@ var initGame = {
                     }
 
                     rollDice();
-                    diceRolled = true; 
-                    gameFunctions[diceRoll[0]]();       
 
-                    //update the dice image
-                    $('.dice1').attr('name', diceRoll[0]);
-                    $('.dice2').attr('name', diceRoll[1]);
+                    //update dice with correct angles to rotate to
+                    setDiceAngle();
 
-                    //NEW DICE CODE
+                    //rotate dice
+                    $('.dice1 .cube').css({ '-webkit-transform': 'translateZ(-100px) rotateX(' + angle.x + 'deg) rotateY(' + angle.y + 'deg)', '-webkit-transition': '2s' })
+                    $('.dice2 .cube').css({ '-webkit-transform': 'translateZ(-100px) rotateX(' + angle1.x + 'deg) rotateY(' + angle1.y + 'deg)', '-webkit-transition': '3s' })
+
+                };
+
+            }
+            $("#game .dice2 .cube").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){ 
+                $('body').addClass('teal');
+                $('body').removeClass('teal');
+
+                //update the dice image
+                $('.dice1').attr('name', diceRoll[0]);
+                $('.dice2').attr('name', diceRoll[1]);                
+
+                gameFunctions[diceRoll[0]]();
+
+                $('#diceResult').text(diceCombined);
+                $('.instructions').fadeIn();
+                $('.results').fadeIn('fast');   
+                
+                diceRolled = false; //resume click ability                                 
+                $("#game .dice2 .cube").unbind();
+            });
+        });
+
+        //duel init
+        $('#duel .diceRollerDuel').on('click', function(e) {
+            var id = $(this).parent().parent().attr('id');
+            $(this).parent().fadeOut('fast');
+            
+            //check if both dice have been rolled
+            var playerButtons = $('#duel .cube');
+
+            //check which player is rolling
+            if (id == 'orange') {
+                diceRoll[0] = Math.floor(Math.random() * 6) + 1;
+                
+                //NEW DICE CODE
                     angle = {};
+
                     $(this).data('n', $(this).data('n') ? 0 : 5);
                     var n = $(this).data('n');
-                    $('.cube').attr('style', '');
+                    $('.dice1 .cube').attr('style', '');
                     angle = { x: 360 * n, y: 360 * n };
-                    angle1 = { x: 360 * n, y: 360 * n }
 
                     switch (diceRoll[0]) {
                         case 1:
@@ -111,7 +149,25 @@ var initGame = {
                         case 6:
                         angle.x = 360 * n + 180;
                         break;
-                    }
+                    };
+
+                $('.dice1').attr('name', diceRoll[0]); 
+                $('.dice1 .cube').css({ '-webkit-transform': 'translateZ(-100px) rotateX(' + angle.x + 'deg) rotateY(' + angle.y + 'deg)', '-webkit-transition': '2s' });
+                $("#duel .dice1 .cube").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){ 
+                    $(this).addClass('rolled');                
+                    $("#duel .dice1 .cube").unbind();
+                });
+            };
+            if (id == 'pink') {
+                diceRoll[1] = Math.floor(Math.random() * 6) + 1;
+
+                //NEW DICE CODE
+                    angle1 = {};
+
+                    $(this).data('n', $(this).data('n') ? 0 : 5);
+                    var n = $(this).data('n');
+                    $('.dice2 .cube').attr('style', '');
+                    angle1 = { x: 360 * n, y: 360 * n };
                     switch (diceRoll[1]) {
                         case 1:
                         break;
@@ -130,82 +186,68 @@ var initGame = {
                         case 6:
                         angle1.x = 360 * n + 180;
                         break;
-                    }
-                    $('.dice1 .cube').css({ '-webkit-transform': 'translateZ(-100px) rotateX(' + angle.x + 'deg) rotateY(' + angle.y + 'deg)', '-webkit-transition': '3s' })
-                    $('.dice2 .cube').css({ '-webkit-transform': 'translateZ(-100px) rotateX(' + angle1.x + 'deg) rotateY(' + angle1.y + 'deg)', '-webkit-transition': '3s' })
+                    };
 
-                    //NEW DICE CODE END
-                };
-                diceRolled = false; //stop double clicking                 
-            }
-            $(".cube").bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){ 
-                $('body').addClass('teal');
-                $('body').removeClass('teal');
-                
-                $('#diceResult').text(diceCombined);
-                $('.results').fadeIn('fast');      
-            });
-        });
 
-        //duel init
-        $('#duel .diceRollerDuel').on('click', function(e) {
-            var id = $(this).parent().parent().attr('id');
-            $(this).parent().fadeOut('fast');
-            
-            //check if both dice have been rolled
-            var playerButtons = $('.diceRollerDuel');
-
-            //check which player is rolling
-            if (id == 'orange') {
-                diceRoll[0] = Math.floor(Math.random() * 6) + 1;
-                $('.dice1').attr('name', diceRoll[0]); 
-                $(this).addClass('rolled');
-            };
-            if (id == 'pink') {
-                diceRoll[1] = Math.floor(Math.random() * 6) + 1;
                 $('.dice2').attr('name', diceRoll[1]);         
-                $(this).addClass('rolled');
+                $('.dice2 .cube').css({ '-webkit-transform': 'translateZ(-100px) rotateX(' + angle1.x + 'deg) rotateY(' + angle1.y + 'deg)', '-webkit-transition': '2s' }) ;
+                $("#duel .dice2 .cube").one("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){ 
+                    $(this).addClass('rolled');                
+                    $("#duel .dice2 .cube").unbind();
+                });                                               
             };            
 
+            duelCheck();
+
             // when both players have rolled
-            setTimeout( function() {
-                if ( $(playerButtons[0]).hasClass('rolled') && $(playerButtons[1]).hasClass('rolled') == true) {
-                    
-                    if ( diceRoll[0] > diceRoll[1] ) {
-                        $('#orange .duelResult').html("<h3>You win!</h3>");
-                        $('#pink .duelResult').html("<h3>You lose!</h3><p>Drink " + (diceRoll[0] - diceRoll[1]) + "<span class='bitch'> </span>!</p>")
-                        if ( (diceRoll[0] - diceRoll[1]) >= 5 ) {
-                            $('.bitch').text(', bitch');
-                        }                        
-                    }
-                    if ( diceRoll[1] > diceRoll[0] ) {
-                        $('#pink .duelResult').html("<h3>You win!</h3>");
-                        $('#orange .duelResult').html("<h3>You lose!</h3><p>Drink " + (diceRoll[1] - diceRoll[0]) + "<span class='bitch'> </span>!</p>")                        
-                        if ( (diceRoll[1] - diceRoll[0]) >= 5 ) {
-                            $('.bitch').text(', bitch');
+            function duelCheck() {
+                setTimeout( function() {
+                    if ( $(playerButtons[0]).hasClass('rolled') && $(playerButtons[1]).hasClass('rolled') == true) {
+
+                        //Player 1 wins
+                        if ( diceRoll[0] > diceRoll[1] ) {
+                            $('#orange .duelResult').html("<h3>You win!</h3>");
+                            $('#pink .duelResult').html("<h3>You lose!</h3><p>Drink " + (diceRoll[0] - diceRoll[1]) + "<span class='bitch'></span>!</p>")
+                            if ( (diceRoll[0] - diceRoll[1]) >= 5 ) {
+                                $('.bitch').text(', bitch');
+                            }                        
+                        };
+
+                        //Player 2 wins
+                        if ( diceRoll[1] > diceRoll[0] ) {
+                            $('#pink .duelResult').html("<h3>You win!</h3>");
+                            $('#orange .duelResult').html("<h3>You lose!</h3><p>Drink " + (diceRoll[1] - diceRoll[0]) + "<span class='bitch'></span>!</p>")                        
+                            if ( (diceRoll[1] - diceRoll[0]) >= 5 ) {
+                                $('.bitch').text(', bitch');
+                            }
                         }
+
+                        $('.rolled').removeClass('rolled');
+
+                        //run standard functions for overall total
+                        $('#diceResult').text(diceCombined);
+                        gameFunctions[diceRoll[0]]();     
+
+                        $('#duel .rollInstructions').html('<a class="diceRoller" href="#game">Pass device back</a>');
+                        $('.rollInstructions').addClass('passPhone');
+
+                        $('.passPhone').on('click.remove', function(e) {
+                            // reset style back to start
+                            $('.duelResult').html('');
+                            $('.dueller .button').show();
+                            $('body').removeClass('teal');
+                            $('.results').fadeOut('fast');
+                            $('.passPhone').unbind('click.remove');
+                            $('.passPhone').removeClass('passPhone');       
+                            $('.diceroll .diceRoller').parent().fadeIn('fast');      
+     
+                        });
+                    } else {
+                        duelCheck();
                     }
+                }, 200)
+            }
 
-                    $('.rolled').removeClass('rolled');
-
-                    //run standard functions for overall total
-                    $('#diceResult').text(diceCombined);
-                    gameFunctions[diceRoll[0]]();     
-
-                    $('#duel .rollInstructions').html('<a class="diceRoller" href="#game">Pass device back</a>');
-                    $('.rollInstructions').addClass('passPhone');
-
-                    $('.passPhone').on('click.remove', function(e) {
-                        // reset style back to start
-                        $('.duelResult').html('');
-                        $('.dueller .button').show();
-                        $('body').removeClass('teal');
-                        $('.results').fadeOut('fast');
-                        $('.passPhone').unbind('click.remove');
-                        $('.passPhone').removeClass('passPhone');            
-                    });
-                }
-            }, 50)
 
         });
 
@@ -432,7 +474,9 @@ var gameFunctions = {
                     $('body').removeClass('teal');
                     $('.results').fadeOut('fast');
                     $('.passPhone').unbind('click.remove');
-                    $('.passPhone').removeClass('passPhone');            
+                    $('.passPhone').removeClass('passPhone');         
+                    $('.diceroll .diceRoller').parent().fadeIn('fast');      
+                       
                 });
                 
                 virgin = true;                    
@@ -445,5 +489,57 @@ var gameFunctions = {
     resetDice: function() {
         initGame.init();
     }
-}
+};
+
+
+    function setDiceAngle() {
+        //NEW DICE CODE
+        angle = {};
+        angle1 = {};
+
+        $(this).data('n', $(this).data('n') ? 0 : 5);
+        var n = $(this).data('n');
+        $('.cube').attr('style', '');
+        angle = { x: 360 * n, y: 360 * n };
+        angle1 = { x: 360 * n, y: 360 * n }
+
+        switch (diceRoll[0]) {
+            case 1:
+            break;
+            case 2:
+            angle.y = 360 * n + 90;
+            break;
+            case 3:
+            angle.x = 360 * n + 90;
+            break;
+            case 4:
+            angle.x = 360 * n - 90;
+            break;
+            case 5:
+            angle.y = 360 * n - 90;
+            break;
+            case 6:
+            angle.x = 360 * n + 180;
+            break;
+        }
+        switch (diceRoll[1]) {
+            case 1:
+            break;
+            case 2:
+            angle1.y = 360 * n + 90;
+            break;
+            case 3:
+            angle1.x = 360 * n + 90;
+            break;
+            case 4:
+            angle1.x = 360 * n - 90;
+            break;
+            case 5:
+            angle1.y = 360 * n - 90;
+            break;
+            case 6:
+            angle1.x = 360 * n + 180;
+            break;
+        }
+    };
 
