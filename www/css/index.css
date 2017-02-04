@@ -26,6 +26,11 @@
   src: url('../fonts/Montserrat-Regular.ttf'); /* IE9 Compat Modes */
 }
 
+@font-face {
+  font-family: 'sourceSansPro';
+  src: url('../fonts/SourceSansPro-Light.otf'); /* IE9 Compat Modes */
+}
+
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -68,15 +73,16 @@ body {
     /*position:absolute;             /* position in the center of the screen */
     /*left:50%;
     top: 0px;*/
-    height: 90vh;                   /* text area height */
-    width:90%;                   /* text area width */
+    height: 100vh;                  
+    width:100%;  
+    margin: 0 auto;                
 
     /*padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin: 0px 0px -145px 0px;  /* offset vertical: half of image height and text area height */
+    /*margin: 0px 0px -145px 0px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
     z-index: -1;
-    position: fixed;
-    left: 0px;
+    /*position: fixed;*/
+    /*left: 0px;*/
 
 }
 
@@ -97,12 +103,12 @@ body {
 }
 
 .container {
-    padding: 0px 5%;
-    margin-top: 50px;
+    /*padding: 0px 5%;*/
+    /*margin-top: 50px;*/
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
-    min-height: 90vh;
+    min-height: 100vh;
 }
 
 
@@ -127,7 +133,9 @@ h2 {
 }
 
 p {
-    line-height: 24px;
+    line-height: 26px;
+    font-size: 1.4em;
+    font-family: sourceSansPro, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
 }
 
 
@@ -148,22 +156,43 @@ footer {
 }
 
 #menu {
-    height: 45vh;
+    display: flex;
+    align-items: center;
+    /*height: 45vh;
     text-align: middle;  
     background-image: url('../img/logo.png');
     background-size: 70vw;
     background-repeat: no-repeat;
-    background-position: center 20%;
+    background-position: center 20%;*/
+}
+
+#logo {
+    text-align: center;
+    /*height: 30vh;*/
+    /*text-align: middle;  */
+    /*background-image: url('../img/logo.png');*/
+    /*background-size: 70vw;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
 }
 
 
 #startGame {
-    position: absolute;
-    bottom: 0px;
-    left: 10%;
-    width: 90%;
+    /*position: absolute;*/
+    /*bottom: 0px;*/
+    /*left: 10%;*/
+    width: 80%;
+    /*margin-bottom: 20%;*/
     max-width: 500px;
+    margin: 0 auto;
 }
+
+#startGame img {
+    /*margin-left: 15%;*/
+    margin-bottom: 50px;
+    min-width: 200px;
+    }
+
     .button {
         width: 100%;
         clear: both;
@@ -198,13 +227,13 @@ footer {
     /*width: 94vw;*/
     /*padding: 0px 7%;*/
     width: 100%;
-    padding-left: 40px;
-    padding-right: 40px;
+    /*padding-left: 40px;*/
+    /*padding-right: 40px;*/
 }
 
 #rules > #content {
     overflow-y: scroll;
-    margin-top:80px;
+    margin-top: 120px;
     height: 85vh;
     
 }
@@ -223,7 +252,7 @@ footer {
     scrollbar-darkshadow-color: #FFFFFF;
     scrollbar-track-color: #FFFFFF;
     scrollbar-arrow-color: #FFFFFF;
-    padding-right: 7%;
+    padding: 0 10%;
 }
 
 /* Scrollbar */
@@ -246,16 +275,16 @@ footer {
 
 .goBack {
     position: fixed;
-    top: 15px;
-    left: 40px;
+    top: 40px;
+    left: 10%;
     height: 50px;
     width: 50px;    
 }
 
 .goBack a {
     position: fixed;
-    top: 15px;
-    left: 40px;
+    /*top: 40px;*/
+    /*left: 40px;*/
     height: 50px;
     width: 50px;
     background-image: url('../img/left-arrow.png');
@@ -264,11 +293,15 @@ footer {
 
 .sound {
     position: fixed;
-    top: 15px;
-    right: 40px;
+    top: 40px;
+    right: 10%;
     height: 50px;
     width: 50px;
     color: #e81f7b;
+    background-image: url(../img/volume.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 
@@ -281,10 +314,13 @@ footer {
 
 /* dice */
 .diceroll > .button {
-    position: absolute;
-    left: 20vw;
-    top: 70vh;
-    width: 60vw;
+    /*position: absolute;*/
+    /*left: 20vw;*/
+    /*top: 70vh;*/
+    /*width: 60vw;*/
+    width: 80%;
+    margin: 70vh auto;
+    max-width: 500px;
 }
 
 .dice {
@@ -298,14 +334,15 @@ footer {
 
 .dice1 {
     position: fixed;
-    top: 30vh;
-    left: 15%;
+    /*top: 30vh;*/
+    /*left: 15%;*/
 }
 
 .dice2 {
     position: fixed;
-    top: 30vh;
-    right: 15%;
+    /*top: 30vh;*/
+    /*right: 15%;*/
+    right: 0;
 }
 
 .pink {
@@ -358,16 +395,26 @@ footer {
 } 
 
 #rules .button {
-    margin-bottom: 80px;
+    margin-bottom: 40px;
 }
 
+.results .dice{display: none;}
+
 .results {
-    width: 80vw;
+    width: 80%;
+    max-width: 360px;
+    max-height: 560px;
     height: 80vh;
-    margin: 10vw, 10vh;
+    /*position: relative;*/
+    margin: 0 auto;
     position: fixed;
-    top: 10vh;
-    left: 10vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*margin: 10vw, 10vh;*/
+    /*top: 10vh;*/
+    /*left: 10vw;*/
+
         /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#88bfe8+0,70b0e0+100;Blue+3D+%2317 */
     background: #211f34; /* Old browsers */
     background: -moz-radial-gradient(center, ellipse cover,  #2E3242 0%, #211f34 100%); /* FF3.6-15 */
@@ -388,17 +435,36 @@ footer {
 
 .instructions {
     position: absolute;
-    top:45vh;
+    top: 65%;
     text-align: center;
     display: block;
     width: 90%;
     padding: 5%;
 }
 
+#illustration img{
+    width: 70%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    top: 20%;
+    position: absolute;
+}
+
+#dicecontainer{
+    height: 80px;
+    margin: 0 auto;
+    position: fixed;
+    top: 30vh;
+    left: 50%;
+    max-width: 300px;
+    width: 80%;
+    transform: translate(-50%);
+}
+
 .rollInstructions {
     color: #e81f7b;
     position: absolute;
-    top:60vh;
+    top:80%;
     text-align: center;
     display: block;
     width: 90%;
@@ -408,8 +474,10 @@ footer {
 }
 
 #diceResult {
-    font-size: 70vw;
-    color: #39394B;
+    font-size: 300px;
+    color: white;
+    opacity: 0.08;
+    font-weight: 600;
     text-align: center;
 }
 
@@ -485,9 +553,9 @@ footer {
     }
 
     #menu {
-        height: 40vh;
+        /*height: 40vh;*/
         text-align: middle;  
-        background-image: url('../img/logo.png');
+        /*background-image: url('../img/logo.png');*/
         background-size: 40vw;
         background-repeat: no-repeat;
         background-position: center;
@@ -506,7 +574,7 @@ footer {
         top: -10vh;
     }
 
-    .dice1 {
+    /*.dice1 {
         position: fixed;
         top: 23vh;
         left: 27vw;
@@ -516,7 +584,7 @@ footer {
         position: fixed;
         top: 23vh;
         left: 60vw;
-    }
+    }*/
 
     #diceResult {
         font-size: 70vh;
