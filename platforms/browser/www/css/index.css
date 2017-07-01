@@ -26,6 +26,11 @@
   src: url('../fonts/Montserrat-Regular.ttf'); /* IE9 Compat Modes */
 }
 
+@font-face {
+  font-family: 'sourceSansPro';
+  src: url('../fonts/SourceSansPro-Light.otf'); /* IE9 Compat Modes */
+}
+
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -36,6 +41,7 @@ body {
     background: -moz-radial-gradient(center, ellipse cover,  #2E3242 0%, #211f34 100%); /* FF3.6-15 */
     background: -webkit-radial-gradient(center, ellipse cover,  #2E3242 0%,#211f34 100%); /* Chrome10-25,Safari5.1-6 */
     background: radial-gradient(ellipse at center,  #2E3242 0%,#211f34 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background-color: #211f34; /* Old browsers */
 
 
     background-attachment:fixed;
@@ -49,8 +55,16 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
+}
 
+.teal {
+    background: #aff2d1;
+    background-color: #aff2d1;
+}
 
+.offTable {
+    background: #e81f7b;;
+    background-color: #e81f7b;
 }
 
 /* Portrait layout (default) */
@@ -59,15 +73,16 @@ body {
     /*position:absolute;             /* position in the center of the screen */
     /*left:50%;
     top: 0px;*/
-    height: 90vh;                   /* text area height */
-    width:90%;                   /* text area width */
+    height: 100vh;                  
+    width:100%;  
+    margin: 0 auto;                
 
     /*padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin: 0px 0px -145px 0px;  /* offset vertical: half of image height and text area height */
+    /*margin: 0px 0px -145px 0px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
     z-index: -1;
-    position: fixed;
-    left: 0px;
+    /*position: fixed;*/
+    /*left: 0px;*/
 
 }
 
@@ -88,69 +103,40 @@ body {
 }
 
 .container {
-    padding: 0px 5%;
-    margin-top: 50px;
+    /*padding: 0px 5%;*/
+    /*margin-top: 50px;*/
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
 
 
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-        background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-                                      /* offset horizontal: half of image width and text area width */
-    }
-}
+
 
 h1 {
-    font-size:24px;
+    font-size:26px;
     font-weight:normal;
     margin:0px;
     overflow:visible;
     padding:0px;
-    text-align:center;
+    /*text-align:center;*/
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.event {
-    border-radius:4px;
-    -webkit-border-radius:4px;
-    color:#FFFFFF;
-    font-size:12px;
-    margin:0px 30px;
-    padding:2px 0px;
+h2 {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
-.event.listening {
-    background-color:#333333;
-    display:block;
+p {
+    line-height: 26px;
+    font-size: 1.4em;
+    font-family: sourceSansPro, Haettenschweiler, 'Arial Narrow Bold', sans-serif !important;
 }
-
-.event.received {
-    background-color:#4B946A;
-    display:none;
-}
-
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
-  
-@-webkit-keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
- 
-.blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
-}
-
 
 
 header {
@@ -170,55 +156,92 @@ footer {
 }
 
 #menu {
-    height: 60vh;
+    display: flex;
+    align-items: center;
+    /*height: 45vh;
     text-align: middle;  
     background-image: url('../img/logo.png');
     background-size: 70vw;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center 20%;*/
 }
 
-#menu img {
-    width: 60%;
-
+#logo {
+    text-align: center;
+    /*height: 30vh;*/
+    /*text-align: middle;  */
+    /*background-image: url('../img/logo.png');*/
+    /*background-size: 70vw;*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: center;*/
 }
+
 
 #startGame {
-    position: absolute;
-    bottom: 0;
-    left: 15%;
-    width: 80%
+    /*position: absolute;*/
+    /*bottom: 0px;*/
+    /*left: 10%;*/
+    width: 80%;
+    /*margin-bottom: 20%;*/
+    max-width: 500px;
+    margin: 0 auto;
 }
-    #startGame div {
+
+#startGame img {
+    /*margin-left: 15%;*/
+    margin-bottom: 50px;
+    min-width: 200px;
+    }
+
+    .button {
         width: 100%;
         clear: both;
         background-color: #3a394d;
         border: none;
         border-radius: 40px 40px 40px 40px;
-        height: 2.5em;
-        margin: 5px;
+        height: 3.2em;
+        margin-top: 30px;
         text-transform: uppercase;
         font-size: 1.5em;
         text-align: center;
+        letter-spacing: 3px;
     }
 
-    #startGame a {
+    .button:active {
+        background-color: #aff2d1;
+    }    
+
+    .button a {
         text-decoration: none;
         color: #aff2d1;      
-        padding-top: 0.6em;
+        padding-top: 0.9em;
         display: block;
+        height: 100%;
     }
+    .button a:active {
+        text-decoration: none;
+        color: #3a394d;      
+    }    
 
 #rules {
-    width: 94vw;
-    padding: 0px 7%;
+    /*width: 94vw;*/
+    /*padding: 0px 7%;*/
+    width: 100%;
+    /*padding-left: 40px;*/
+    /*padding-right: 40px;*/
 }
 
 #rules > #content {
     overflow-y: scroll;
-    margin-top: 40px;
+    margin-top: 120px;
     height: 85vh;
     
+}
+
+#rules ul {
+    list-style: none;
+    padding-left: 0px;
+    line-height: 24px;
 }
 
 .customScroll {
@@ -229,38 +252,61 @@ footer {
     scrollbar-darkshadow-color: #FFFFFF;
     scrollbar-track-color: #FFFFFF;
     scrollbar-arrow-color: #FFFFFF;
-    padding-right: 7%;
+    padding: 0 10%;
 }
 
 /* Scrollbar */
 .customScroll::-webkit-scrollbar {
-    width: 8px;
+    width: 12px;
 }
  
 /* Track */
 .customScroll::-webkit-scrollbar-track {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
 }
  
 /* Handle */
 .customScroll::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
     background: #3a394d; 
 }   
 
-.goBack a{
+.goBack {
     position: fixed;
-    top: 20px;
-    left: 20px;
+    top: 40px;
+    left: 10%;
+    height: 50px;
+    width: 50px;    
+}
+
+.goBack a {
+    position: fixed;
+    /*top: 40px;*/
+    /*left: 40px;*/
     height: 50px;
     width: 50px;
     background-image: url('../img/left-arrow.png');
     background-size: contain;
 }
 
+.sound {
+    position: fixed;
+    top: 40px;
+    right: 10%;
+    height: 50px;
+    width: 50px;
+    color: #e81f7b;
+    background-image: url(../img/volume.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
+    .mute {
+        background-image: url(../img/volumemute.png);
+    }
 
 .diceSelection {
     position: absolute;
@@ -268,28 +314,16 @@ footer {
     width: 100%;
 }
 
-.door {
-    width: 30%;
-    display: inline-block;
-    background-image: url('../img/hat.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    height: 7em;
-    text-align: center;
-}
-
-.door.selected {
-    background-image: url('../img/hatoff.png');
-}
 
 /* dice */
-.diceroll {
-    position: fixed;
-    top: 40vh;
-    left: 50vw;
-    margin-left: -20vw;
-    width: 80vw;
+.diceroll > .button {
+    /*position: absolute;*/
+    /*left: 20vw;*/
+    /*top: 70vh;*/
+    /*width: 60vw;*/
+    width: 80%;
+    margin: 70vh auto;
+    max-width: 500px;
 }
 
 .dice {
@@ -299,14 +333,265 @@ footer {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    margin-right: 2vw;
+}
+
+.dice1 {
+    position: fixed;
+    /*top: 30vh;*/
+    /*left: 15%;*/
+}
+
+.dice2 {
+    position: fixed;
+    /*top: 30vh;*/
+    /*right: 15%;*/
+    right: 0;
 }
 
 .pink {
     background-image: url('../img/2pink.png');
 }
+    .pink[name="1"] {
+        background-image: url('../img/1pink.png');
+    }
+    .pink[name="2"] {
+        background-image: url('../img/2pink.png');
+    }
+    .pink[name="3"] {
+        background-image: url('../img/3pink.png');
+    }
+    .pink[name="4"] {
+        background-image: url('../img/4pink.png');
+    }
+    .pink[name="5"] {
+        background-image: url('../img/5pink.png');
+    }
+    .pink[name="6"] {
+        background-image: url('../img/6pink.png');
+    }    
 
 .orange {
     background-image: url('../img/1orange.png');
+}
+    .orange[name="1"] {
+        background-image: url('../img/1orange.png');
+    }
+    .orange[name="2"] {
+        background-image: url('../img/2orange.png');
+    }
+    .orange[name="3"] {
+        background-image: url('../img/3orange.png');
+    }
+    .orange[name="4"] {
+        background-image: url('../img/4orange.png');
+    }
+    .orange[name="5"] {
+        background-image: url('../img/5orange.png');
+    }
+    .orange[name="6"] {
+        background-image: url('../img/6orange.png');
+    }    
+    
+#rules .dice {
+    width: 2em;
+    height: 2em;
+} 
+
+#rules .button {
+    margin-bottom: 40px;
+}
+
+.results .dice{display: none;}
+
+.results {
+    width: 80%;
+    max-width: 360px;
+    max-height: 560px;
+    height: 80vh;
+    /*position: relative;*/
+    margin: 0 auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*margin: 10vw, 10vh;*/
+    /*top: 10vh;*/
+    /*left: 10vw;*/
+
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#88bfe8+0,70b0e0+100;Blue+3D+%2317 */
+    background: #211f34; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #2E3242 0%, #211f34 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  #2E3242 0%,#211f34 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  #2E3242 0%,#211f34 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    border-radius: 20px;
+    -webkit-box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.75);
+    box-shadow: 0px 10px 20px 5px rgba(0,0,0,0.75);
+    display: none;
+    z-index: 999;
+}
+
+.results > * {
+    z-index: 1000;
+}
+
+
+.instructions {
+    position: absolute;
+    top: 65%;
+    text-align: center;
+    display: block;
+    width: 90%;
+    padding: 5%;
+}
+
+#illustration img{
+    width: 100%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    top: 15%;
+    position: absolute;
+    opacity: 0.3;
+}
+
+#dicecontainer{
+    height: 80px;
+    margin: 0 auto;
+    position: fixed;
+    top: 30vh;
+    left: 50%;
+    max-width: 300px;
+    width: 80%;
+    transform: translate(-50%);
+}
+
+.rollInstructions {
+    color: #e81f7b;
+    position: absolute;
+    top:80%;
+    text-align: center;
+    display: block;
+    width: 90%;
+    padding: 5%;  
+    padding-top: 40px;
+    height: 100px;
+    font-size: 1.5em;
+    text-transform: uppercase;  
+}
+
+#diceResult {
+    font-size: 360px;
+    color: #aff2d1;
+    opacity: 0.8;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    top: 15px;
+}
+
+#options > label {
+    width: 60vw;
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+/*Duel section */
+#duel a {
+    text-decoration: none;
+    color: #e81f7b;
+}
+
+.dueller {
+    text-align: center;
+}
+
+#duel .dice1 {
+    top: 20vh;
+    left: 40vw;
+}
+
+#duel .dice2 {
+    top: 70vh;
+    left: 40vw;    
+}
+
+#orange {
+    position: absolute;
+    top: 5vh;
+    width: 65vw;
+    left: 20vw;
+    transform: rotate(180deg);
+}
+
+#orange .button a {
+    color: #fe723f;
+}
+
+#pink {
+    position: absolute;
+    top: 85vh;
+    width: 65vw;
+    left: 16vw;
+}
+
+#pink .button a {
+    color: #e81f7b;
+}
+#duel .instructions {
+    top: 45vh;
+}
+
+.duelInstructions {
+    position: absolute;
+    top: 40vh;
+    text-align: center;
+    display: block;
+    width: 90%;
+    padding: 5%;
+}
+
+#duel .rollInstructions {
+    top: 50vh;
+}
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app {
+
+    }
+
+    #menu {
+        /*height: 40vh;*/
+        text-align: middle;  
+        /*background-image: url('../img/logo.png');*/
+        background-size: 40vw;
+        background-repeat: no-repeat;
+        background-position: center;
+    }    
+
+    #rules > #content {
+        height: 75vh;
+    }
+
+    .diceroll > .button {
+        top: 60vh;
+    }
+
+    #diceResult {
+
+    }
+
+    /*.dice1 {
+        position: fixed;
+        top: 23vh;
+        left: 27vw;
+    }
+
+    .dice2 {
+        position: fixed;
+        top: 23vh;
+        left: 60vw;
+    }*/
 
 }
+

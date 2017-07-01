@@ -1,6 +1,3 @@
-var smoothState;
-
-
 //Dice functions
 var diceRoll = [];
 var diceCombined;
@@ -37,11 +34,23 @@ var diceFunctions = {
   
 };
 
-
-
 //Shorten roll dice function
 function rollDice () {
     diceFunctions.rollDice();
 } 
 
-
+//sound control
+var soundOn = true;
+function soundToggle() {
+    $('.sound').on('click', function() {
+        if (soundOn == true) {
+            //disable sound
+            $('.sound').addClass('mute');
+            soundOn = false;
+        } else {
+            $('.sound').removeClass('mute');
+            soundOn = true;            
+        }
+  
+    });
+};

@@ -68,3 +68,7 @@ audio["duelStart"].src = "audio/its-time-to-duel.mp3";
 
 audio["welcome"] = new Audio();
 audio["welcome"].src = "audio/Welcometothreeman.ogg";
+
+audio["mlghorn"] = new Audio();
+audio["mlghorn"].src = "audio/3airhorn.mp3";
+audio["mlghorn"].volume = 0.8;

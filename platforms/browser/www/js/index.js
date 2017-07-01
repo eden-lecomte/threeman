@@ -40,6 +40,10 @@ var app = {
         settings.initialize();
         smoothState = $('#main').smoothState().data('smoothState');
 
+        document.addEventListener("backbutton", function (e) {
+            e.preventDefault();
+        }, false );
+
         console.log('Received Event: ' + id);
     }
 };

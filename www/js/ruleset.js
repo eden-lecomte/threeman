@@ -22,13 +22,18 @@ navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mo
 var initGame = {
     init: function() {
         if (soundOn == true) {
-           audio["welcome"].play();
+            try{
+                audio["welcome"].play();
+            } catch (err) {
+                $('.sound').addClass('mute');
+                soundOn = false;
+            }           
         };
 
         virgin = true;
         diceRolled = false; 
 
-        $('.diceRoller').on('click', function(e) {
+        $('.diceRoller').on('click touchstart', function(e) {
             $("#game .dice2 .cube").unbind();
 
             $('body').removeClass('teal');
@@ -47,20 +52,14 @@ var initGame = {
 
                         //take us to duel page
                         window.location.hash = '#duel';
-
-                        if (soundOn == true) {
-                            audio["duelStart"].play();
-                        };
                         
                         return false;
                     };
 
                     diceRolled = true; //stop double clicking 
-                    $('.results').fadeOut('fast');      
-                    $('.diceroll .diceRoller').parent().fadeOut('fast');      
-
-                    //check off the table rules
-                    gameFunctions.offTable();                
+                    $('.results').fadeOut('fast');    
+                    $('.menuToggles').fadeOut('fast'); 
+                    $('.diceroll .diceRoller').parent().fadeOut('fast');                   
                     
                     rollDice();
 
@@ -84,17 +83,24 @@ var initGame = {
 
                 gameFunctions[diceRoll[0]]();
 
+                //check off the table rules
+                gameFunctions.offTable();   
+
                 $('#diceResult').text(diceCombined);
+                $('#illustration img').attr('src', 'img/icon' + diceCombined + '.png');
+
+                $('#diceResult').css('font-size', $('.results').width()*0.7 + 'px');
                 $('.instructions').fadeIn();
                 $('.results').fadeIn('fast');   
-                
+                $('.menuToggles').fadeOut('fast'); 
+
                 diceRolled = false; //resume click ability                                 
                 $("#game .dice2 .cube").unbind();
             });
         });
 
         //duel init
-        $('#duel .diceRollerDuel').on('click', function(e) {
+        $('#duel .diceRollerDuel').on('click touchstart', function(e) {
             var id = $(this).parent().parent().attr('id');
             $(this).parent().fadeOut('fast');
             
@@ -224,6 +230,7 @@ var initGame = {
                             $('.diceroll .diceRoller').parent().fadeIn('fast');      
      
                         });
+                        virgin = false;
                     } else {
                         duelCheck();
                     }
@@ -237,6 +244,13 @@ var initGame = {
         $('.goBack').on('click', function(e) {
            $('body').removeClass('teal'); 
         });
+
+        //Orientation change
+        // Listen for resize changes
+        window.addEventListener("resize", function() {
+            // Get screen size (inner/outerWidth, inner/outerHeight)
+            $('#diceResult').css('font-size', $('.results').width()*0.7 + 'px');
+        }, false);
 
     }
 }
@@ -397,7 +411,10 @@ var gameFunctions = {
         threeManExists = true;
         $('.instructions').text('You are the new Threeman! Put on the sweet hat, and drink to say hello!');
         $('.rollInstructions').text('Roll again');   
-        audioInit.newThreeman();     
+        audio["mlghorn"].play();
+        setTimeout( function() {
+            audioInit.newThreeman();  
+        }, 1500); 
     },
     social: function() {
         console.log('Social function run');
@@ -413,6 +430,7 @@ var gameFunctions = {
         $('.instructions').html('Pick 2 people to duel<br>Loser drinks the difference');
         $('.rollInstructions').text('Pass device to Duellers'); 
         $('.rollInstructions').addClass('duelTime'); 
+        audio["duelStart"].play();
     },
     toLeft: function() {
         console.log('To the left function run');
@@ -466,6 +484,8 @@ var gameFunctions = {
                     // reset style back to start
                     $('body').removeClass('teal');
                     $('.results').fadeOut('fast');
+                    $('.menuToggles').fadeIn('fast');
+
                     $('.passPhone').unbind('click.remove');
                     $('.passPhone').removeClass('passPhone');         
                     $('.diceroll .diceRoller').parent().fadeIn('fast');      
@@ -502,8 +522,8 @@ var gameFunctions = {
 
                 $('body').addClass('offTable');
                 $('.results').fadeIn('fast');
-                
-                return false;              
+                audio["mlghorn"].play(); 
+                return;              
             }
         }
     },
