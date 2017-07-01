@@ -12,7 +12,7 @@ var diceRolled = false;
 
 var offTableNew3Man = false;
 var offTableFinishDrink = false;
-
+var drinkValue = 1;
 
 
 //vibrate
@@ -192,10 +192,12 @@ var initGame = {
                 setTimeout( function() {
                     if ( $(playerButtons[0]).hasClass('rolled') && $(playerButtons[1]).hasClass('rolled') == true) {
 
+                        virgin = false;
+
                         //Player 1 wins
                         if ( diceRoll[0] > diceRoll[1] ) {
                             $('#orange .duelResult').html("<h3>You win!</h3>");
-                            $('#pink .duelResult').html("<h3>You lose!</h3><p>Drink " + (diceRoll[0] - diceRoll[1]) + "<span class='bitch'></span>!</p>")
+                            $('#pink .duelResult').html("<h3>You lose!</h3><p>Drink " + (diceRoll[0] - diceRoll[1])*drinkValue + "<span class='bitch'></span>!</p>")
                             if ( (diceRoll[0] - diceRoll[1]) >= 5 ) {
                                 $('.bitch').text(', bitch');
                             }                        
@@ -204,7 +206,7 @@ var initGame = {
                         //Player 2 wins
                         if ( diceRoll[1] > diceRoll[0] ) {
                             $('#pink .duelResult').html("<h3>You win!</h3>");
-                            $('#orange .duelResult').html("<h3>You lose!</h3><p>Drink " + (diceRoll[1] - diceRoll[0]) + "<span class='bitch'></span>!</p>")                        
+                            $('#orange .duelResult').html("<h3>You lose!</h3><p>Drink " + (diceRoll[1] - diceRoll[0])*drinkValue + "<span class='bitch'></span>!</p>")                        
                             if ( (diceRoll[1] - diceRoll[0]) >= 5 ) {
                                 $('.bitch').text(', bitch');
                             }
@@ -220,6 +222,7 @@ var initGame = {
                         $('.rollInstructions').addClass('passPhone');
 
                         $('.passPhone').on('click.remove', function(e) {
+                            
                             // reset style back to start
                             $('.duelResult').html('');
                             $('.dueller .button').show();
@@ -228,9 +231,8 @@ var initGame = {
                             $('.passPhone').unbind('click.remove');
                             $('.passPhone').removeClass('passPhone');       
                             $('.diceroll .diceRoller').parent().fadeIn('fast');      
-     
+                            diceRoll = [];//reset dice roll
                         });
-                        virgin = false;
                     } else {
                         duelCheck();
                     }
@@ -311,7 +313,7 @@ var gameFunctions = {
         } else if (diceRoll[1] == 3) {
             //6
             if (threeManExists == true) {
-                $('.instructions').text('Three drinks for Threeman!');
+                $('.instructions').text('' + drinkValue*3 + ' drinks for Threeman!');
                 $('.rollInstructions').text('Roll again');
                 audioInit.doubleThrees();
             } else {
@@ -321,7 +323,7 @@ var gameFunctions = {
             //7
             gameFunctions.toLeft();
             if (threeManExists == true) {
-                $('.instructions').append('<br> and Threeman drinks!');
+                $('.instructions').append('<br> and Threeman drinks ' + drinkValue + '!');
                 $('.rollInstructions').text('Roll again');            
             }
         } else if (diceRoll[1] == 5) {
@@ -340,7 +342,7 @@ var gameFunctions = {
         } else if (diceRoll[1] == 3) {
             gameFunctions.toLeft();
             if (threeManExists == true) {
-                $('.instructions').append('<br> and Threeman drinks!');
+                $('.instructions').append('<br> and Threeman drinks ' + drinkValue + '!');
                 $('.rollInstructions').text('Roll again');            
             }
         } else if (diceRoll[1] == 4) {
@@ -387,17 +389,17 @@ var gameFunctions = {
     },
     doubleSix: function() {
         if (threeManExists == true) {
-            $('.instructions').text('Everyone except Threeman, drink 2!');  
+            $('.instructions').text('Everyone except Threeman, drink ' + drinkValue*2 + '!');  
             $('.rollInstructions').text('Roll again');   
             audioInit.doubleSix();
         } else {
-            gameFunctions.checkVirgin();
+            gameFunctions.duel();
         }
     },
     check3man: function() {
         console.log('Check for a 3 man function run');
         if (threeManExists == true) {
-            $('.instructions').text('Threeman drinks!');
+            $('.instructions').text('Threeman drinks ' + drinkValue + '!');
             $('.rollInstructions').text('Roll again');     
             audioInit.threeIsRolled();
         } else {
@@ -409,7 +411,7 @@ var gameFunctions = {
         console.log('Three man function run');
         virgin = false;
         threeManExists = true;
-        $('.instructions').text('You are the new Threeman! Put on the sweet hat, and drink to say hello!');
+        $('.instructions').text('You are the new Threeman! Put on the sweet hat, and drink ' + drinkValue + ' to say hello!');
         $('.rollInstructions').text('Roll again');   
         audio["mlghorn"].play();
         setTimeout( function() {
@@ -419,7 +421,7 @@ var gameFunctions = {
     social: function() {
         console.log('Social function run');
         virgin = false;
-        $('.instructions').text('Everyone drink!');
+        $('.instructions').text('Everyone drink ' + drinkValue + '!');
         $('.rollInstructions').text('Roll again');
         audioInit.social();
     },
@@ -436,27 +438,27 @@ var gameFunctions = {
         console.log('To the left function run');
         virgin = false;
         $('.rollInstructions').text('Roll again');        
-        $('.instructions').text('Drink to the left!');
+        $('.instructions').text('Drink ' + drinkValue + ' to the left!');
         audioInit.seven();
     },
     toRight: function() {
         console.log('To the right function run');
         virgin = false;
-        $('.instructions').text('Drink to the right!');
+        $('.instructions').text('Drink ' + drinkValue + ' to the right!');
         $('.rollInstructions').text('Roll again');
         audioInit.eleven();        
     },
     twoForTwo: function() {
         console.log('Two for two');
         virgin = false;
-        $('.instructions').text('Pick 2 people to drink 2 drinks');
+        $('.instructions').text('Pick 2 people to drink ' + drinkValue*2 + ' drinks');
         $('.rollInstructions').text('Roll again');
         audioInit.twoforTwo();
     },
     twoforMe: function() {
         console.log('Two for Me');
         virgin = false;
-        $('.instructions').text('Two drinks for you!');
+        $('.instructions').text('' + drinkValue*2 + ' drinks for you!');
         $('.rollInstructions').text('Roll again');
         audioInit.twoforMe();
     },    
@@ -465,7 +467,7 @@ var gameFunctions = {
             console.log('Virgin check run');
             if (virgin == true) {
                 virgin = false; 
-                $('.instructions').text('Virgin roll, drink and go again!')
+                $('.instructions').text('Virgin roll, drink ' + drinkValue + ' and go again!')
                 $('.rollInstructions').text('Roll again');
                 audioInit.virginRoll();
             } else {
@@ -474,7 +476,7 @@ var gameFunctions = {
                 console.log('----------');
                 console.log('NEW PLAYER');
                 console.log('----------');            
-                $('.rollInstructions').text('<- Pass device left');
+                $('.rollInstructions').text('< Pass device left');
                 if (navigator.vibrate) {
                     navigator.vibrate(500);
                 };
@@ -509,7 +511,7 @@ var gameFunctions = {
                 $('.instructions').html('You rolled off the table...<br>'); 
                 
                 if (offTableNew3Man == true) {
-                    $('.instructions').append('You are the new Three Man! Take a drink and roll again<br>');
+                    $('.instructions').append('You are the new Three Man! Drink ' + drinkValue + ' and roll again<br>');
                 }
                 if (offTableFinishDrink == true) {
                     $('.instructions').append('Finish your drink and roll again');

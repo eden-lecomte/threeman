@@ -223,7 +223,7 @@ footer {
         color: #3a394d;      
     }    
 
-#rules {
+#rules, #custom {
     /*width: 94vw;*/
     /*padding: 0px 7%;*/
     width: 100%;
@@ -231,14 +231,14 @@ footer {
     /*padding-right: 40px;*/
 }
 
-#rules > #content {
+#rules > #content, #custom > #content {
     overflow-y: scroll;
     margin-top: 120px;
     height: 85vh;
     
 }
 
-#rules ul {
+#rules ul, #custom, ul {
     list-style: none;
     padding-left: 0px;
     line-height: 24px;
@@ -397,7 +397,7 @@ footer {
     height: 2em;
 } 
 
-#rules .button {
+#rules .button, #custom .button {
     margin-bottom: 40px;
 }
 
@@ -489,7 +489,7 @@ footer {
     top: 15px;
 }
 
-#options > label {
+.toggles > label {
     width: 60vw;
     display: inline-block;
     padding-bottom: 20px;
@@ -569,7 +569,7 @@ footer {
         background-position: center;
     }    
 
-    #rules > #content {
+    #rules > #content, #custom > #content {
         height: 75vh;
     }
 

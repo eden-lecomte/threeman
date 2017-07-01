@@ -374,17 +374,40 @@
                     <li>Do not touch the phone unless it is your turn, or take a drink (the owner of the phone is exempt from this rule)</li>
                     <li>If you accept the phone from someone's hands, then you must finish your drink</li>
                 </ul>
-                <h4>Off the table</h4>
-                <p>In the tabletop version of Three Man, if you roll the dice off the table you must either finish your drink or become the new Three Man (or both).<br>
-                If you wish, you can play with a 1% chance of someone rolling off the table by selecting the rules below.</p>
-                <div id="options">
+
+                <h2>Drink responsibly</h2>
+                <p>We recommend you limit the amount you drink to the legal limits in your area, or lower. Do not drink and drive. Drink non-alcoholic beverages. We will not be responsible for any injuries, damage or harm relating to the use of this app.</p>
+                <div class="button"><a href="#game">GET DRUNK!</a></div>
+            </div>
+        </div>        
+
+        <!-- custom -->
+        <div id="custom" class="container">
+            <div class="goBack"><a href="#menu"></a></div>
+            <div class="sound">
+                <!--<i class="fa fa-volume-up fa-3x" aria-hidden="true"></i>-->
+            </div>
+            
+            <div id="content" class="customScroll">
+                <h1>Options</h1>
+                <p>Standard rules not getting you drunk quickly enough?</p>
+
+                <h3>Off the Table</h3>
+                <p>Add a 1% chance to "roll the dice off the table" by selecting the rules below.</p>
+                <div class="toggles" id="options">
                     <label for='finishDrink'>Finish Drink</label><input type="checkbox" id="finishDrink" class="js-switch"> <br>
                     <label for='become3Man'>Become Three Man</label><input type="checkbox" id="become3Man" class="js-switch">  
                 </div>
-                <div class="button"><a href="#game">GET DRUNK!</a></div>
 
+                <h3>Alpha and Omega</h3>
+                <p>Masochist much? This setting doubles the drink values.</p>
+                <div class="toggles">
+                    <label for='doubleDrinks'>Double my drinks!</label><input type="checkbox" id="doubleDrinks" class="js-switch">
+                </div>
+
+                <div class="button"><a href="#game">GET DRUNK!</a></div>
             </div>
-        </div>        
+        </div>    
 
         <!-- menu -->
         <div id="menu" class="container">
@@ -392,6 +415,7 @@
                 <div id="logo"><img src="img/logo.png" width="70%"></div>
                 <div class="button"><a href="#game">Start</a></div>
                 <div class="button"><a href="#rules">How to play</a></div>
+                <div class="button"><a href="#custom">Options</a></div>
             </div>
         </div>
     </div>
@@ -421,12 +445,20 @@
 
         var check3ManSwitch = document.querySelector('#become3Man');
         var finishDrinkSwitch = document.querySelector('#finishDrink');
-        
+        var doubleDrinksSwitch = document.querySelector('#doubleDrinks');
+
         check3ManSwitch.onchange = function() {
             offTableNew3Man = check3ManSwitch.checked;
         };
         finishDrinkSwitch.onchange = function() {
             offTableFinishDrink = finishDrinkSwitch.checked;
+        };      
+        doubleDrinksSwitch.onchange = function() {
+            if (doubleDrinksSwitch.checked) {
+                drinkValue = 2;
+            } else {
+                drinkValue = 1;
+            }
         };      
 
         document.addEventListener("backbutton", function (e) {
