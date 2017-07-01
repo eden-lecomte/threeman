@@ -15,6 +15,7 @@
     <preference name="StatusBarBackgroundColor" value="#aff2d1" />
     <preference name="splash-screen-duration" value="5000" />
     <preference name="orientation" value="portrait" />
+    <preference name="phonegap-version" value="cli-6.3.1" />    
     <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
     <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
     <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
