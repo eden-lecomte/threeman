@@ -106,7 +106,10 @@ var initGame = {
             
             //check if both dice have been rolled
             var playerButtons = $('#duel .cube');
-
+            
+            //reset dice angle
+            n = $(this).data('n');
+            
             //check which player is rolling
             if (id == 'orange') {
                 diceRoll[0] = Math.floor(Math.random() * 6) + 1;
@@ -193,6 +196,7 @@ var initGame = {
                     if ( $(playerButtons[0]).hasClass('rolled') && $(playerButtons[1]).hasClass('rolled') == true) {
 
                         virgin = false;
+                        n = '';
 
                         //Player 1 wins
                         if ( diceRoll[0] > diceRoll[1] ) {
@@ -223,6 +227,10 @@ var initGame = {
 
                         $('.passPhone').on('click.remove', function(e) {
                             
+                            //location.href = '#game?threeManExists='+threeManExists+'&virgin='+virgin+'&diceRolled';
+                            //location.reload();
+
+                            
                             // reset style back to start
                             $('.duelResult').html('');
                             $('.dueller .button').show();
@@ -232,6 +240,7 @@ var initGame = {
                             $('.passPhone').removeClass('passPhone');       
                             $('.diceroll .diceRoller').parent().fadeIn('fast');      
                             diceRoll = [];//reset dice roll
+                            diceRolled = false;
                         });
                     } else {
                         duelCheck();
