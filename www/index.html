@@ -312,9 +312,7 @@
         <!-- rules -->
         <div id="rules" class="container">
             <div class="goBack"><a href="#menu"></a></div>
-            <div class="sound">
-                <!--<i class="fa fa-volume-up fa-3x" aria-hidden="true"></i>-->
-            </div>
+            <div class="sound"></div>
             
             <div id="content" class="customScroll">
                 <h1>How to play</h1>
@@ -384,9 +382,7 @@
         <!-- custom -->
         <div id="custom" class="container">
             <div class="goBack"><a href="#menu"></a></div>
-            <div class="sound">
-                <!--<i class="fa fa-volume-up fa-3x" aria-hidden="true"></i>-->
-            </div>
+            <div class="sound"></div>
             
             <div id="content" class="customScroll">
                 <h1>Options</h1>
@@ -399,7 +395,7 @@
                 </div>
                 
                 <h3>Off the Table</h3>
-                <p>Add a 1% chance to "roll the dice off the table" by selecting the rules below.</p>
+                <p>Add a 1% chance to "roll the dice off the table". Choose the appropriate punishment below.</p>
                 <div class="toggles" id="options">
                     <label for='finishDrink'>Finish Drink</label><input type="checkbox" id="finishDrink" class="js-switch"> <br>
                     <label for='become3Man'>Become 3 Man</label><input type="checkbox" id="become3Man" class="js-switch">  
@@ -473,7 +469,24 @@
         };    
 
         document.addEventListener("backbutton", function (e) {
-            e.preventDefault();
+            if (location.hash == "#game") {
+            
+                navigator.notification.confirm(
+                    'Return to menu?', // message
+                    onConfirm,              // callback to invoke with index of button pressed
+                    'Go back?',               // title
+                    'Yes,No'          // buttonLabels
+                );
+                function onConfirm(buttonIndex){
+                    if (buttonIndex==1){
+                        //do nothing;
+                        location.hash = '';
+                        location.reload();
+                    } else {
+                        //do nothing
+                    };            
+                }
+            }            
         }, false );
 
     </script>
