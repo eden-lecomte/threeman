@@ -507,20 +507,22 @@ footer {
 
 #duel .dice1 {
     top: 20vh;
-    left: 40vw;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 #duel .dice2 {
-    top: 70vh;
-    left: 40vw;    
+    top: 65vh;
+    left: 50%;
+    transform: translate(-50%);
 }
 
 #orange {
     position: absolute;
     top: 5vh;
     width: 65vw;
-    left: 20vw;
-    transform: rotate(180deg);
+    left: 50%;
+    transform: translate(-50%) rotate(180deg);
 }
 
 #orange .button a {
@@ -529,9 +531,10 @@ footer {
 
 #pink {
     position: absolute;
-    top: 85vh;
-    width: 65vw;
-    left: 16vw;
+    top: 80vh;    
+    left: 50%;
+    transform: translate(-50%);
+    width: 65vw;    
 }
 
 #pink .button a {
