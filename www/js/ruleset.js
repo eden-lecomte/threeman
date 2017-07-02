@@ -14,6 +14,8 @@ var offTableNew3Man = false;
 var offTableFinishDrink = false;
 var drinkValue = 1;
 
+//Controls dice rotation multiplier
+var n = $(window).data('n');
 
 //vibrate
 navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
@@ -107,40 +109,35 @@ var initGame = {
             //check if both dice have been rolled
             var playerButtons = $('#duel .cube');
             
-            //reset dice angle
-            n = $(this).data('n');
-            
             //check which player is rolling
             if (id == 'orange') {
                 diceRoll[0] = Math.floor(Math.random() * 6) + 1;
                 
                 //NEW DICE CODE
-                    angle = {};
+                angle = {};
 
-                    $(this).data('n', $(this).data('n') ? 0 : 5);
-                    var n = $(this).data('n');
-                    $('.dice1 .cube').attr('style', '');
-                    angle = { x: 360 * n, y: 360 * n };
+                $('.dice1 .cube').attr('style', '');
+                angle = { x: 360 * n, y: 360 * n };
 
-                    switch (diceRoll[0]) {
-                        case 1:
-                        break;
-                        case 2:
-                        angle.y = 360 * n + 90;
-                        break;
-                        case 3:
-                        angle.x = 360 * n + 90;
-                        break;
-                        case 4:
-                        angle.x = 360 * n - 90;
-                        break;
-                        case 5:
-                        angle.y = 360 * n - 90;
-                        break;
-                        case 6:
-                        angle.x = 360 * n + 180;
-                        break;
-                    };
+                switch (diceRoll[0]) {
+                    case 1:
+                    break;
+                    case 2:
+                    angle.y = 360 * n + 90;
+                    break;
+                    case 3:
+                    angle.x = 360 * n + 90;
+                    break;
+                    case 4:
+                    angle.x = 360 * n - 90;
+                    break;
+                    case 5:
+                    angle.y = 360 * n - 90;
+                    break;
+                    case 6:
+                    angle.x = 360 * n + 180;
+                    break;
+                };
 
                 $('.dice1').attr('name', diceRoll[0]); 
                 $('.dice1 .cube').css({ '-webkit-transform': 'translateZ(-100px) rotateX(' + angle.x + 'deg) rotateY(' + angle.y + 'deg)', '-webkit-transition': '2s' });
@@ -153,31 +150,29 @@ var initGame = {
                 diceRoll[1] = Math.floor(Math.random() * 6) + 1;
 
                 //NEW DICE CODE
-                    angle1 = {};
+                angle1 = {};
 
-                    $(this).data('n', $(this).data('n') ? 0 : 5);
-                    var n = $(this).data('n');
-                    $('.dice2 .cube').attr('style', '');
-                    angle1 = { x: 360 * n, y: 360 * n };
-                    switch (diceRoll[1]) {
-                        case 1:
-                        break;
-                        case 2:
-                        angle1.y = 360 * n + 90;
-                        break;
-                        case 3:
-                        angle1.x = 360 * n + 90;
-                        break;
-                        case 4:
-                        angle1.x = 360 * n - 90;
-                        break;
-                        case 5:
-                        angle1.y = 360 * n - 90;
-                        break;
-                        case 6:
-                        angle1.x = 360 * n + 180;
-                        break;
-                    };
+                $('.dice2 .cube').attr('style', '');
+                angle1 = { x: 360 * n, y: 360 * n };
+                switch (diceRoll[1]) {
+                    case 1:
+                    break;
+                    case 2:
+                    angle1.y = 360 * n + 90;
+                    break;
+                    case 3:
+                    angle1.x = 360 * n + 90;
+                    break;
+                    case 4:
+                    angle1.x = 360 * n - 90;
+                    break;
+                    case 5:
+                    angle1.y = 360 * n - 90;
+                    break;
+                    case 6:
+                    angle1.x = 360 * n + 180;
+                    break;
+                };
 
 
                 $('.dice2').attr('name', diceRoll[1]);         
@@ -196,7 +191,6 @@ var initGame = {
                     if ( $(playerButtons[0]).hasClass('rolled') && $(playerButtons[1]).hasClass('rolled') == true) {
 
                         virgin = false;
-                        n = '';
 
                         //Player 1 wins
                         if ( diceRoll[0] > diceRoll[1] ) {
@@ -226,10 +220,6 @@ var initGame = {
                         $('.rollInstructions').addClass('passPhone');
 
                         $('.passPhone').on('click.remove', function(e) {
-                            
-                            //location.href = '#game?threeManExists='+threeManExists+'&virgin='+virgin+'&diceRolled';
-                            //location.reload();
-
                             
                             // reset style back to start
                             $('.duelResult').html('');
@@ -322,7 +312,7 @@ var gameFunctions = {
         } else if (diceRoll[1] == 3) {
             //6
             if (threeManExists == true) {
-                $('.instructions').text('' + drinkValue*3 + ' drinks for Threeman!');
+                $('.instructions').text('' + drinkValue*3 + ' drinks for 3 Man!');
                 $('.rollInstructions').text('Roll again');
                 audioInit.doubleThrees();
             } else {
@@ -332,7 +322,7 @@ var gameFunctions = {
             //7
             gameFunctions.toLeft();
             if (threeManExists == true) {
-                $('.instructions').append('<br> and Threeman drinks ' + drinkValue + '!');
+                $('.instructions').append('<br> and 3 Man drinks ' + drinkValue + '!');
                 $('.rollInstructions').text('Roll again');            
             }
         } else if (diceRoll[1] == 5) {
@@ -351,7 +341,7 @@ var gameFunctions = {
         } else if (diceRoll[1] == 3) {
             gameFunctions.toLeft();
             if (threeManExists == true) {
-                $('.instructions').append('<br> and Threeman drinks ' + drinkValue + '!');
+                $('.instructions').append('<br> and 3 Man drinks ' + drinkValue + '!');
                 $('.rollInstructions').text('Roll again');            
             }
         } else if (diceRoll[1] == 4) {
@@ -398,7 +388,8 @@ var gameFunctions = {
     },
     doubleSix: function() {
         if (threeManExists == true) {
-            $('.instructions').text('Everyone except Threeman, drink ' + drinkValue*2 + '!');  
+            virgin = false;
+            $('.instructions').text('Everyone except 3 Man, drink ' + drinkValue*2 + '!');  
             $('.rollInstructions').text('Roll again');   
             audioInit.doubleSix();
         } else {
@@ -406,9 +397,9 @@ var gameFunctions = {
         }
     },
     check3man: function() {
-        console.log('Check for a 3 man function run');
         if (threeManExists == true) {
-            $('.instructions').text('Threeman drinks ' + drinkValue + '!');
+            virgin = false;
+            $('.instructions').text('3 Man drinks ' + drinkValue + '!');
             $('.rollInstructions').text('Roll again');     
             audioInit.threeIsRolled();
         } else {
@@ -417,10 +408,9 @@ var gameFunctions = {
         }
     },
     threeman: function() {
-        console.log('Three man function run');
         virgin = false;
         threeManExists = true;
-        $('.instructions').text('You are the new Threeman! Put on the sweet hat, and drink ' + drinkValue + ' to say hello!');
+        $('.instructions').text('You are the new 3 Man! Put on the sweet hat, and drink ' + drinkValue + ' to say hello!');
         $('.rollInstructions').text('Roll again');   
         audio["mlghorn"].play();
         setTimeout( function() {
@@ -428,44 +418,42 @@ var gameFunctions = {
         }, 1500); 
     },
     social: function() {
-        console.log('Social function run');
         virgin = false;
         $('.instructions').text('Everyone drink ' + drinkValue + '!');
         $('.rollInstructions').text('Roll again');
         audioInit.social();
     },
     duel: function() {
-        console.log('Duel function run');        
         virgin = false;
         diceRoll = [];//reset dice roll
+        //reset dice spin multiplier
+        $(window).data('n', $(window).data('n') ? 0 : 5);
+        n = $(window).data('n');
+
         $('.instructions').html('Pick 2 people to duel<br>Loser drinks the difference');
         $('.rollInstructions').text('Pass device to Duellers'); 
         $('.rollInstructions').addClass('duelTime'); 
         audio["duelStart"].play();
     },
     toLeft: function() {
-        console.log('To the left function run');
         virgin = false;
         $('.rollInstructions').text('Roll again');        
         $('.instructions').text('Drink ' + drinkValue + ' to the left!');
         audioInit.seven();
     },
     toRight: function() {
-        console.log('To the right function run');
         virgin = false;
         $('.instructions').text('Drink ' + drinkValue + ' to the right!');
         $('.rollInstructions').text('Roll again');
         audioInit.eleven();        
     },
     twoForTwo: function() {
-        console.log('Two for two');
         virgin = false;
         $('.instructions').text('Pick 2 people to drink ' + drinkValue*2 + ' drinks');
         $('.rollInstructions').text('Roll again');
         audioInit.twoforTwo();
     },
     twoforMe: function() {
-        console.log('Two for Me');
         virgin = false;
         $('.instructions').text('' + drinkValue*2 + ' drinks for you!');
         $('.rollInstructions').text('Roll again');
@@ -473,7 +461,6 @@ var gameFunctions = {
     },    
     checkVirgin: function() {
         if (window.location.hash != '#duel') {
-            console.log('Virgin check run');
             if (virgin == true) {
                 virgin = false; 
                 $('.instructions').text('Virgin roll, drink ' + drinkValue + ' and go again!')
@@ -514,13 +501,12 @@ var gameFunctions = {
         //check the 1% off the table rule
         if( offTableNew3Man == true || offTableFinishDrink == true) {
             var offTableRoll = Math.floor(Math.random() * 100) + 1
-            console.log(offTableRoll);
             //1/100 means 1%
             if (offTableRoll == 1) {
                 $('.instructions').html('You rolled off the table...<br>'); 
                 
                 if (offTableNew3Man == true) {
-                    $('.instructions').append('You are the new Three Man! Drink ' + drinkValue + ' and roll again<br>');
+                    $('.instructions').append('You are the new 3 Man! Drink ' + drinkValue + ' and roll again<br>');
                 }
                 if (offTableFinishDrink == true) {
                     $('.instructions').append('Finish your drink and roll again');
@@ -550,8 +536,10 @@ function setDiceAngle() {
     angle = {};
     angle1 = {};
 
-    $(this).data('n', $(this).data('n') ? 0 : 5);
-    var n = $(this).data('n');
+    //Get window data and toggle between 0/5 to ensure full rolls
+    $(window).data('n', $(window).data('n') ? 0 : 5);
+    n = $(window).data('n');
+
     $('.cube').attr('style', '');
     angle = { x: 360 * n, y: 360 * n };
     angle1 = { x: 360 * n, y: 360 * n }

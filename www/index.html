@@ -322,37 +322,37 @@
                 <h2>General</h2>
                 <!-- <hr> -->
                 <p>Roll the dice until no one drinks as a result of your roll. If you roll nothing on the first roll of your turn, this is considered a 'virgin roll' - drink and roll again.</p>
-                <h2>Three Man</h2>
+                <h2>3 Man</h2>
                 <!-- <hr> -->
-                <p>When a <span class="dice orange" name="1"></span><span class="dice pink" name="2"></span> is rolled, this person becomes the Three Man. They must drink to introduce themselves, and put on a silly hat.</p>
+                <p>When a <span class="dice orange" name="1"></span><span class="dice pink" name="2"></span> is rolled, this person becomes the 3 Man. They must drink to introduce themselves, and put on a silly hat.</p>
                 <ul>
-                    <li>Any time a <span class="dice orange" name="3"></span> appears on either dice, the Three Man drinks</li>
-                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span>, mean the Three Man must drink 3 - <i>"3 for 3 man"</i></li>
-                    <li>If the current Three Man rolls a <span class="dice orange" name="1"></span><span class="dice pink" name="2"></span>, then he/she gets to nominate a new Three Man</li>
-                    <li>Any time a new Three Man is introduced, the current and new Three Man must drink - <i>"Salutations"</i></li>
-                    <li>Under no circumstances is the Three Man allowed to stop playing while they are the current Three Man</li>
+                    <li>Any time a <span class="dice orange" name="3"></span> appears on either dice, the 3 Man drinks</li>
+                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span>, mean the 3 Man must drink 3 - <i>"3 for 3 man"</i></li>
+                    <li>If the current 3 Man rolls a <span class="dice orange" name="1"></span><span class="dice pink" name="2"></span>, then he/she gets to nominate a new 3 Man</li>
+                    <li>Any time a new 3 Man is introduced, the current and new 3 Man must drink - <i>"Salutations"</i></li>
+                    <li>Under no circumstances is the 3 Man allowed to stop playing while they are the current 3 Man</li>
                 </ul>
                 <h2>Social - 10</h2>
                 <!-- <hr> -->
                 <p>Any time a total of 10 is rolled, everyone playing must drink.</p>
                 <h2>Duels</h2>
                 <!-- <hr> -->
-                <p>Two players must duel by each rolling a dice, with the loser drinking the difference. The roll is also counted as a roll from the person who set up the duel. You could become Three Man as a result of the duel!</p>
+                <p>Two players must duel by each rolling a dice, with the loser drinking the difference. The roll is also counted as a roll from the person who set up the duel. You could become 3 Man as a result of the duel!</p>
                 <p>Duels occur on the following double rolls</p>
                 <ul>
                     <li><span class="dice orange" name="4"></span><span class="dice pink" name="4"></span></li>
-                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span> (if there is no current Three Man)</li>
-                    <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> (if there is no current Three Man)</li>
+                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span> (if there is no current 3 Man)</li>
+                    <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> (if there is no current 3 Man)</li>
                 </ul>
                 <h2>Doubles</h2>
                 <!-- <hr> -->
                 <ul>
                     <li><span class="dice orange" name="1"></span><span class="dice pink" name="1"></span> Two drinks for me</li>
                     <li><span class="dice orange" name="2"></span><span class="dice pink" name="2"></span> Two drinks for two different players</li>
-                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span> Three drinks for Three Man</li>
+                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span> Three drinks for 3 Man</li>
                     <li><span class="dice orange" name="4"></span><span class="dice pink" name="4"></span> Duel</li>
                     <li><span class="dice orange" name="5"></span><span class="dice pink" name="5"></span> Social - everyone drink</li>
-                    <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> Two drinks for everyone, except Three Man</li>
+                    <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> Two drinks for everyone, except 3 Man</li>
 
                 </ul>
                 <h2>7/11</h2>
@@ -392,11 +392,17 @@
                 <h1>Options</h1>
                 <p>Standard rules not getting you drunk quickly enough?</p>
 
+                <h3>Start with a 3 Man</h3>
+                <p>Have a designated 3 Man all ready? Poor guy.</p>
+                <div class="toggles">
+                    <label for='begin3man'>Start with a 3 Man</label><input type="checkbox" id="begin3man" class="js-switch"> <br>
+                </div>
+                
                 <h3>Off the Table</h3>
                 <p>Add a 1% chance to "roll the dice off the table" by selecting the rules below.</p>
                 <div class="toggles" id="options">
                     <label for='finishDrink'>Finish Drink</label><input type="checkbox" id="finishDrink" class="js-switch"> <br>
-                    <label for='become3Man'>Become Three Man</label><input type="checkbox" id="become3Man" class="js-switch">  
+                    <label for='become3Man'>Become 3 Man</label><input type="checkbox" id="become3Man" class="js-switch">  
                 </div>
 
                 <h3>Alpha and Omega</h3>
@@ -446,6 +452,8 @@
         var check3ManSwitch = document.querySelector('#become3Man');
         var finishDrinkSwitch = document.querySelector('#finishDrink');
         var doubleDrinksSwitch = document.querySelector('#doubleDrinks');
+        var begin3manSwitch = document.querySelector('#begin3man');
+        
 
         check3ManSwitch.onchange = function() {
             offTableNew3Man = check3ManSwitch.checked;
@@ -460,6 +468,9 @@
                 drinkValue = 1;
             }
         };      
+        begin3manSwitch.onchange = function() {
+            threeManExists = begin3manSwitch.checked;
+        };    
 
         document.addEventListener("backbutton", function (e) {
             e.preventDefault();
