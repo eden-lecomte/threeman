@@ -380,7 +380,7 @@
         </div>        
 
         <!-- custom -->
-        <div id="custom" class="container">
+        <div id="custom" class="container free">
             <div class="goBack"><a href="#menu"></a></div>
             <div class="sound"></div>
             
@@ -407,7 +407,9 @@
                     <label for='doubleDrinks'>Double my drinks!</label><input type="checkbox" id="doubleDrinks" class="js-switch">
                 </div>
 
-                <div class="button"><a href="#game">GET DRUNK!</a></div>
+                <div class="button premium-only"><a href="#game">GET DRUNK!</a></div>
+                <div class="button free-only"><a id="purchase" href="#buy">Unlock Pro</a></div>                
+                
             </div>
         </div>    
 
@@ -428,6 +430,7 @@
     <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>        
     <script type="text/javascript" src="js/jquery.mobile.custom.min.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/inappstore.js"></script>    
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/ruleset.js"></script>        
     <script type="text/javascript" src="js/config.js"></script>
@@ -480,12 +483,14 @@
                 function onConfirm(buttonIndex){
                     if (buttonIndex==1){
                         //do nothing;
-                        location.hash = '';
+                        location.hash = '#menu';
                         location.reload();
                     } else {
                         //do nothing
                     };            
                 }
+            } else {
+                location.hash = '#menu';
             }            
         }, false );
 

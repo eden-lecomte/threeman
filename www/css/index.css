@@ -598,3 +598,26 @@ footer {
 
 }
 
+
+
+
+/** 
+ ** PREMIUM / FREE 
+ ** Styles
+**/
+
+.premium {
+
+}
+
+    .free .premium-only {
+        display: none;
+    }
+
+.free {
+
+}
+
+    .premium .free-only {
+        display: none;
+    }

@@ -1,12 +1,4 @@
 {
-    "cordova-plugin-battery-status": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-battery-status@~1.1.1"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-camera": {
         "source": {
             "type": "registry",
@@ -59,22 +51,6 @@
         "source": {
             "type": "registry",
             "id": "cordova-plugin-device@~1.1.1"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-device-motion": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-device-motion@~1.2.0"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
-    "cordova-plugin-device-orientation": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-device-orientation@~1.0.2"
         },
         "is_top_level": true,
         "variables": {}
@@ -166,5 +142,15 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cc.fovea.cordova.purchase": {
+        "source": {
+            "type": "registry",
+            "id": "cc.fovea.cordova.purchase"
+        },
+        "is_top_level": true,
+        "variables": {
+            "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwtffJdr1g7aD65zcuu4P5NjylSnTBzp5YW/xXKSFpvZOloRUfbWjGFXL+K/Zda2VHh+NWojMkbb/b3hpxlYzLUb7/fl0r8NnvnLmZlpyyJwDRelzKMRs3aSievK2eJ2X979EMnt8AnZkgkoiQJxxlYpI0l2pHvE7QSMDVYZFP2VtNBmIEkBKBbHoIAPuPwhyhvVeSTIZTDJk4+XJytvRbgMWJuaYmh1h+N0GZqHzbG7NPKRjQEmsj4AOCRTcdhY5FzTL8uPE7HJohsGO2XNDdLx7crCeWOEJXijy5plKwTRDzmr9qNUYN8oGQ/AfSzGcRZK6eMamLnGjRauTxSPwXQIDAQAB"
+        }
     }
 }

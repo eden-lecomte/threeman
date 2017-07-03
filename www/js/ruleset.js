@@ -214,7 +214,14 @@ var initGame = {
 
                         //run standard functions for overall total
                         $('#diceResult').text(diceCombined);
-                        gameFunctions[diceRoll[0]]();     
+
+                        //Allow for re-duel
+                        if (diceRoll[0] == diceRoll[1] && threeManExists === false && diceCombined != 6 && diceCombined != 6 ){
+                            
+                            return;
+                        } else {
+                            gameFunctions[diceRoll[0]]();     
+                        }
 
                         $('#duel .rollInstructions').html('<a class="diceRoller" href="#game">Pass device back</a>');
                         $('.rollInstructions').addClass('passPhone');

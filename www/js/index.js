@@ -41,5 +41,7 @@ var app = {
         smoothState = $('#main').smoothState().data('smoothState');
 
         console.log('Received Event: ' + id);
+        initializeStore();
     }
+    
 };

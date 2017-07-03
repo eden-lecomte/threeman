@@ -7,6 +7,10 @@
         "files": {}
     },
     "installed_plugins": {
+        "cc.fovea.cordova.purchase": {
+            "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwtffJdr1g7aD65zcuu4P5NjylSnTBzp5YW/xXKSFpvZOloRUfbWjGFXL+K/Zda2VHh+NWojMkbb/b3hpxlYzLUb7/fl0r8NnvnLmZlpyyJwDRelzKMRs3aSievK2eJ2X979EMnt8AnZkgkoiQJxxlYpI0l2pHvE7QSMDVYZFP2VtNBmIEkBKBbHoIAPuPwhyhvVeSTIZTDJk4+XJytvRbgMWJuaYmh1h+N0GZqHzbG7NPKRjQEmsj4AOCRTcdhY5FzTL8uPE7HJohsGO2XNDdLx7crCeWOEJXijy5plKwTRDzmr9qNUYN8oGQ/AfSzGcRZK6eMamLnGjRauTxSPwXQIDAQAB",
+            "PACKAGE_NAME": "com.drinks.threeman"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.drinks.threeman"
         },
