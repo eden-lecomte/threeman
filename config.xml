@@ -1,9 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<<<<<<< HEAD
 <widget id="com.drinks.threeman" version="1.3.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-=======
-<widget id="com.drinks.threeman" version="1.2.7" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
->>>>>>> fc8704ed26a95ff14387ca4f2a52dc696dc9532a
     <name>3 Man</name>
     <description>
         3 man drinking game, for mobile.
