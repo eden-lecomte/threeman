@@ -216,7 +216,10 @@ var initGame = {
                         $('#diceResult').text(diceCombined);
 
                         //Allow for re-duel
-                        if (diceRoll[0] == diceRoll[1] && threeManExists === false && diceCombined != 6 && diceCombined != 6 ){
+                        if (diceRoll[0] == diceRoll[1] 
+                            && threeManExists === false 
+                            && diceCombined != 6 && diceCombined != 6
+                        ){
                             
                             return;
                         } else {
@@ -506,6 +509,12 @@ var gameFunctions = {
     },
     offTable: function() {
         //check the 1% off the table rule
+
+//uh oh you friccin' moron
+//set animation to roll dice off table
+// + screenshake
+//move offTable to trigger NEXT roll, rather than this one
+
         if( offTableNew3Man == true || offTableFinishDrink == true) {
             var offTableRoll = Math.floor(Math.random() * 100) + 1
             //1/100 means 1%
