@@ -37,9 +37,6 @@ var app = {
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        settings.initialize();
-        smoothState = $('#main').smoothState().data('smoothState');
-
         console.log('Received Event: ' + id);
         initializeStore();
     }

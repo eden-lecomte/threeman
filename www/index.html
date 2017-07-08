@@ -43,18 +43,27 @@
     <link rel="stylesheet" type="text/css" href="css/transitions.css" />
     <link rel="stylesheet" href="css/switchery.min.css" />
     <link rel="stylesheet" href="css/dice.css" />
+    <link rel="stylesheet" href="css/csshake.css" />
 
+    <script>
+        var switchery = [];
+    </script>
 
-    <title>3 man</title>
+    <title>3 Man</title>
 </head>
 
 <body>
     <div class="app">
 
         <!-- game -->
-        <div id="game" class="container">
+        <div id="game" class="container free">
             <div class="goBack menuToggles"><a href="index.html"></a></div>
             <div class="sound menuToggles"></div>
+
+            <div class="threeman-score premium-only">
+                <div class="previous three-man"><span class="number">0</span><br><span class="desc">Best<br>3Man</span></div>
+                <div class="current three-man"><span class="number">0</span><br><span class="desc">This<br>3Man</span></div>
+            </div>
 
             <div class="results">
                 <div id="illustration"><img src="" /></div>
@@ -324,11 +333,11 @@
                 <!-- <hr> -->
                 <p>When a <span class="dice orange" name="1"></span><span class="dice pink" name="2"></span> is rolled, this person becomes the 3 Man. They must drink to introduce themselves, and put on a silly hat.</p>
                 <ul>
-                    <li>Any time a <span class="dice orange" name="3"></span> appears on either dice, the 3 Man drinks</li>
-                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span>, mean the 3 Man must drink 3 - <i>"3 for 3 man"</i></li>
-                    <li>If the current 3 Man rolls a <span class="dice orange" name="1"></span><span class="dice pink" name="2"></span>, then he/she gets to nominate a new 3 Man</li>
-                    <li>Any time a new 3 Man is introduced, the current and new 3 Man must drink - <i>"Salutations"</i></li>
-                    <li>Under no circumstances is the 3 Man allowed to stop playing while they are the current 3 Man</li>
+                    <li>Any time a <span class="dice orange" name="3"></span> appears on either dice, the 3 Man drinks.</li>
+                    <li>If there are 2 <span class="dice orange" name="3"></span><span class="dice pink" name="3"></span>, then the 3 Man must drink 3 - <i>"3 for 3 man"</i>.</li>
+                    <li>If the current 3 Man rolls a <span class="dice orange" name="1"></span><span class="dice pink" name="2"></span>, then he/she gets to nominate a new 3 Man.</li>
+                    <li>Any time a new 3 Man is introduced, the current and new 3 Man must drink - <i>"Salutations"</i>.</li>
+                    <li>Under no circumstances is the 3 Man allowed to stop playing while they are the current 3 Man.</li>
                 </ul>
                 <h2>Social - 10</h2>
                 <!-- <hr> -->
@@ -339,18 +348,18 @@
                 <p>Duels occur on the following double rolls</p>
                 <ul>
                     <li><span class="dice orange" name="4"></span><span class="dice pink" name="4"></span></li>
-                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span> (if there is no current 3 Man)</li>
-                    <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> (if there is no current 3 Man)</li>
+                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span> (if there is no current 3 Man).</li>
+                    <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> (if there is no current 3 Man).</li>
                 </ul>
                 <h2>Doubles</h2>
                 <!-- <hr> -->
                 <ul>
-                    <li><span class="dice orange" name="1"></span><span class="dice pink" name="1"></span> Two drinks for me</li>
-                    <li><span class="dice orange" name="2"></span><span class="dice pink" name="2"></span> Two drinks for two different players</li>
-                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span> Three drinks for 3 Man</li>
-                    <li><span class="dice orange" name="4"></span><span class="dice pink" name="4"></span> Duel</li>
-                    <li><span class="dice orange" name="5"></span><span class="dice pink" name="5"></span> Social - everyone drink</li>
-                    <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> Two drinks for everyone, except 3 Man</li>
+                    <li><span class="dice orange" name="1"></span><span class="dice pink" name="1"></span> Two drinks for me.</li>
+                    <li><span class="dice orange" name="2"></span><span class="dice pink" name="2"></span> Two drinks for two different players.</li>
+                    <li><span class="dice orange" name="3"></span><span class="dice pink" name="3"></span> Three drinks for 3 Man.</li>
+                    <li><span class="dice orange" name="4"></span><span class="dice pink" name="4"></span> Duel.</li>
+                    <li><span class="dice orange" name="5"></span><span class="dice pink" name="5"></span> Social - everyone drink.</li>
+                    <li><span class="dice orange" name="6"></span><span class="dice pink" name="6"></span> Two drinks for everyone, except 3 Man.</li>
 
                 </ul>
                 <h2>7/11</h2>
@@ -387,7 +396,9 @@
             <div id="content" class="customScroll">
                 <h1>Options</h1>
                 <p>Standard rules not getting you drunk quickly enough?</p>
-
+                <p>Upgrade to 3 Man Pro Edition to access these!</p>
+                <div class="upgrade-link free-only"><a href="#buy">Upgrade to Pro</a></div>
+                <br>
                 <h3>Start with a 3 Man</h3>
                 <p>Have a designated 3 Man all ready? Poor guy.</p>
                 <div class="toggles">
@@ -408,18 +419,39 @@
                 </div>
 
                 <div class="button premium-only"><a href="#game">GET DRUNK!</a></div>
-                <div class="button free-only"><a id="purchase" href="#buy">Unlock Pro</a></div>                
+                <div class="button free-only"><a class="purchase" href="#buy">3 Man Pro</a></div>                
                 
             </div>
         </div>    
 
+        <!-- buy -->
+        <div id="buy" class="container free">
+            <div class="goBack"><a href="#menu"></a></div>
+            <div class="sound"></div>
+            
+            <div id="content" class="customScroll">
+                <h1>3 Man Pro Edition</h1>
+                <p>Want to zaz up your 3 Man experience even more?</p>
+                <p>Unlock additional customization options, and toggle unique rules so you can play 3 Man the way you want!</p>
+                <h3>What do you get?</h3>
+                <p>A drinking game experience like no other!</p>
+                <ul>
+                    <li>- Start the game with a 3 Man - great for if you have a pause between games</li>
+                    <li>- Double the drink count - be warned, this is absolutely brutal!</li>
+                    <li>- Add a 1% chance to your roll that causes you to become the new 3 Man, finish your drink, or both!</li>
+                </ul>
+                <div class="button free-only"><a id="purchase" class="purchase" href="#buy">Unlock Pro</a></div>                  
+            </div>
+        </div>            
+
         <!-- menu -->
-        <div id="menu" class="container">
+        <div id="menu" class="container free">
             <div id="startGame">
-                <div id="logo"><img src="img/logo.png" width="70%"></div>
+                <div id="logo"><img class="free-only" src="img/logo.png" width="70%"><img class="premium-only" src="img/3manprotransparent.png" style="margin-bottom: 0px;" width="70%"></div>
                 <div class="button"><a href="#game">Start</a></div>
                 <div class="button"><a href="#rules">How to play</a></div>
                 <div class="button"><a href="#custom">Options</a></div>
+                <div class="upgrade-link free-only"><a href="#buy">Upgrade to Pro</a></div>
             </div>
         </div>
     </div>
@@ -438,15 +470,20 @@
     <script type="text/javascript" src="js/audio.js"></script>
     
     <script type="text/javascript">
-        //app.initialize();
+        app.initialize();
         initGame.init();
         soundToggle();
         
         var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
 
         elems.forEach(function(html) {
-            var switchery = new Switchery(html);
+            switchery.push(new Switchery(html));
         });
+        
+        for (i = 0; i < switchery.length; i++) {
+            switchery[i].disable();
+        }
+
 
         var check3ManSwitch = document.querySelector('#become3Man');
         var finishDrinkSwitch = document.querySelector('#finishDrink');
@@ -489,6 +526,10 @@
                         //do nothing
                     };            
                 }
+            } else if (location.hash = '#menu') {
+                navigator.app.exitApp();
+            } else if (location.hash = '#duel') {
+                alert('No, you can\'t leave a duel.');                
             } else {
                 location.hash = '#menu';
             }            

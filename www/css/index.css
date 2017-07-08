@@ -193,7 +193,7 @@ footer {
     min-width: 200px;
     }
 
-    .button {
+ .button {
         width: 100%;
         clear: both;
         background-color: #3a394d;
@@ -223,7 +223,7 @@ footer {
         color: #3a394d;      
     }    
 
-#rules, #custom {
+#rules, #custom, #buy {
     /*width: 94vw;*/
     /*padding: 0px 7%;*/
     width: 100%;
@@ -231,14 +231,14 @@ footer {
     /*padding-right: 40px;*/
 }
 
-#rules > #content, #custom > #content {
+#rules > #content, #custom > #content, #buy > #content {
     overflow-y: scroll;
     margin-top: 120px;
     height: 85vh;
     
 }
 
-#rules ul, #custom, ul {
+#rules ul, #custom ul, #buy ul {
     list-style: none;
     padding-left: 0px;
     line-height: 24px;
@@ -275,7 +275,7 @@ footer {
 
 .goBack {
     position: fixed;
-    top: 40px;
+    top: 50px;
     left: 10%;
     height: 50px;
     width: 50px;    
@@ -293,7 +293,7 @@ footer {
 
 .sound {
     position: fixed;
-    top: 40px;
+    top: 50px;
     right: 10%;
     height: 50px;
     width: 50px;
@@ -397,7 +397,7 @@ footer {
     height: 2em;
 } 
 
-#rules .button, #custom .button {
+#rules .button, #custom .button, #buy .button  {
     margin-bottom: 40px;
 }
 
@@ -443,6 +443,7 @@ footer {
     display: block;
     width: 90%;
     padding: 5%;
+    font-size: 1.2em;
 }
 
 #illustration img{
@@ -473,9 +474,9 @@ footer {
     display: block;
     width: 90%;
     padding: 5%;  
-    padding-top: 40px;
+    padding-top: 60px;
     height: 100px;
-    font-size: 1.5em;
+    font-size: 1.3em;
     text-transform: uppercase;  
 }
 
@@ -572,7 +573,7 @@ footer {
         background-position: center;
     }    
 
-    #rules > #content, #custom > #content {
+    #rules > #content, #custom > #content, #buy > #content {
         height: 75vh;
     }
 
@@ -598,26 +599,94 @@ footer {
 
 }
 
+.threeman-score {
+    text-transform:uppercase;
+    text-align: center;
+}
 
+.three-man {
+    background-color: #aff2d1;
+    color: #211f34;
+    position: fixed;
+    height: 0px;
+    font-size: 13px;
+    -webkit-box-shadow: 0px 5px 20px 5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 20px 5px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 20px 5px rgba(0,0,0,0.75);    
+    padding-top: 40px;    
+    
+}
 
+.three-man span.desc {
+    color: #aff2d1;
+    position: absolute;
+}
+
+.three-man span.number {
+    font-size: 28px;
+    height: 30px;
+    position: absolute;
+    left: 0px;
+    padding-top: 0px;    
+    top: 2px;    
+    color: #211f34;    
+    width: 40px;
+}
+
+.previous.three-man {
+    right: 30vw;
+    top: 0;
+    width: 40px;
+}
+
+.previous.three-man span.desc{
+    top: 5px; 
+    left: 60px;
+    text-align: left;
+
+}
+
+.current.three-man {
+    left: 30vw;
+    top: 0;
+    width: 40px;    
+}
+.current.three-man span.desc{
+    top: 5px; 
+    left: -70px;
+    text-align: right;
+    
+}
 
 /** 
  ** PREMIUM / FREE 
  ** Styles
 **/
 
+/* Class used on containers while user is using the PRO edition */
 .premium {
 
 }
-
+    /* Premium only feature, inside a FREE container */
     .free .premium-only {
         display: none;
     }
 
+/* Class used on containers while user is using the free edition */
 .free {
 
 }
-
+    /* FREE only feature, inside a PREMIUM container */
     .premium .free-only {
         display: none;
+    }
+
+.upgrade-link {
+    padding-top: 10px;
+    text-align: center;
+    display: none;
+}
+    .upgrade-link a{
+        color: #e81f7b !important;
+        font-weight: bold;
     }
