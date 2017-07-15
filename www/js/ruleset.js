@@ -18,6 +18,8 @@ var drinkValue = 1;
 var current3ManDrinks = 0;
 var previous3ManDrinks = 0;
 
+var proEdition = false;
+
 //Controls dice rotation multiplier
 var n = $(window).data('n');
 
@@ -265,7 +267,9 @@ var initGame = {
                             $('.results').fadeOut('fast');
                             $('.passPhone').unbind('click.remove');
                             $('.passPhone').removeClass('passPhone');       
-                            $('.diceroll .diceRoller').parent().fadeIn('fast');      
+                            $('.diceroll .diceRoller').parent().fadeIn('fast');    
+                            $('span.desc').css('color', '#aff2d1');
+  
                             diceRoll = [];//reset dice roll
                             diceRolled = false;
                         });
@@ -454,7 +458,9 @@ var gameFunctions = {
         threeManExists = true;
         $('.instructions').text('You are the new 3 Man! Put on the sweet hat, and drink ' + drinkValue + ' to say hello!');
         $('.rollInstructions').text('Roll again');   
-        audio["mlghorn"].play();
+        if (soundOn == true) {
+            audio["mlghorn"].play();
+        };
         setTimeout( function() {
             audioInit.newThreeman();  
         }, 1500); 
@@ -476,7 +482,7 @@ var gameFunctions = {
         $('.instructions').html('Pick 2 people to duel<br>Loser drinks the difference');
         $('.rollInstructions').text('Pass device to Duellers'); 
         $('.rollInstructions').addClass('duelTime'); 
-        audio["duelStart"].play();
+        audioInit.duel();
     },
     toLeft: function() {
         virgin = false;
@@ -592,8 +598,13 @@ var gameFunctions = {
                 diceRolled = false; //resume click ability                                             
             }, 1500)
 
-            audio["mlghorn"].play(); 
-
+            if (soundOn == true) {
+                audio["mlghorn"].play();
+            };
+            setTimeout( function() {
+                audioInit.offTable();  
+            }, 1500); 
+            new3ManDrinks(drinkValue);        
             $("#game .dice2 .cube").unbind();            
 
             return false;              
@@ -674,27 +685,131 @@ function hardShake( element, duration ) {
     }, duration);
 };
 
-//Add a rotate shake that lasts defined duration
-function rotateShake( element, duration ) {
-    $(element).addClass('shake-rotate shake-constant');
+//Add a little shake that lasts defined duration
+function littleShake( element, duration ) {
+    $(element).addClass('shake-little shake-constant');
     setTimeout(function() {
-        $(element).removeClass('shake-rotate shake-constant');
+        $(element).removeClass('shake-little shake-constant');
     }, duration);
 };
 
 
 function update3ManDrinks(drinks) {
     var drinkCount = drinks;
-    current3ManDrinks = current3ManDrinks + drinkCount;
-    $('.current.three-man span.number').text(current3ManDrinks);
+    if (proEdition == true) {
+        
+        for (i = 0; i < drinkCount; i++) {
+            setTimeout(function() {
+
+                if (soundOn == true) {
+                    var audioSound = new Audio();
+                    audioSound.src = "audio/buttonchime02up.wav";
+                    audioSound.volume = 1.2;                    
+                    audioSound.play();
+
+                    setTimeout(function() {
+                        var audioSound;
+                    }, 300);
+                };
+                var icon = $('<div class="newDrink" name="'+ i +'"></div>').text('+1');
+
+                $(icon).css({
+                    'margin-left': randomMargin()+'px',
+                    'margin-top': randomMargin()+'px'
+                });
+
+                $('body').append(icon);
+                $(icon).fadeIn(200);
+                
+                $(icon).animate({
+                    fontSize: "40px"
+                }, 300);
+
+                littleShake(icon, 400);
+
+                $(icon).promise().done(
+                    animateDrinkCount(icon, drinkCount)
+                );
+            }, i*200);                
+        }
+    }
 };
 
 function new3ManDrinks(drinks) {
     var drinkCount = drinks;
+
+
     if (previous3ManDrinks < current3ManDrinks) {
         previous3ManDrinks = (current3ManDrinks + drinkCount);
-        $('.previous.three-man span.number').text(previous3ManDrinks);
+        $('.previous.three-man span.number').fadeOut('200').promise().done(function() {
+            $('.previous.three-man span.number').text(previous3ManDrinks);
+            $('.previous.three-man span.number').fadeIn('200');
+        });            
     }
-    current3ManDrinks = drinkCount;
-    $('.current.three-man span.number').text(drinkCount);
+    current3ManDrinks = 0;
+    $('.current.three-man span.number').fadeOut('200').promise().done(function() {
+        $('.current.three-man span.number').text(0);
+        $('.current.three-man span.number').fadeIn('200');
+    });
+    update3ManDrinks(drinks)
 };
+
+
+function animateDrinkCount(icon, drinks) {
+    var object = icon;
+    var drinkCount = drinks
+
+/* Use this to interrupt halfway if want to try and form a gradient
+    $(icon).animate({
+        top: '30vh',
+        left: '50vw',
+        marginLeft: Math.floor(Math.random() * 50 + (Math.random() < 0.5 ? -100 : 100 )) +'px',
+        marginTop: '15px',
+    }, 500);
+*/
+    $(icon).animate({
+        top: $('.three-man.current').css('top'),
+        left: $('.three-man.current').css('left'),
+        marginLeft: '0px',
+        marginTop: '15px',
+    }, 500);
+
+    //end
+    $(icon).animate({
+        fontSize: '0px'
+    }, 800);
+
+    //must match above animation timer
+    setTimeout(function() {
+
+        $('.current.three-man span.number').animate({
+            fontSize: "40px",
+            top: '-5px',
+            left: '-2px'
+        }, 100);
+
+        setTimeout(function() {
+            current3ManDrinks = current3ManDrinks + 1;
+            $('.current.three-man span.number').text(current3ManDrinks);   
+            
+            $('.current.three-man span.number').animate({
+                fontSize: "28px",
+                top: '2px',
+                left: '0px'
+            }, 100);
+        }, 150)
+    }, 800);    
+    
+    $(icon).promise().done(
+        function() {
+            $(icon).remove();
+        }
+    );
+
+};
+
+
+function randomMargin() {
+    //return a random number between 500, 1500 and -500,-1500
+    return Math.floor(Math.random() * (10 + (Math.random() < 0.5 ? -70 : 70 )));
+}

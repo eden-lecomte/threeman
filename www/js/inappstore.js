@@ -19,30 +19,33 @@ function initializeStore() {
         console.log("\\o/ STORE READY \\o/");
     });
 
-    // After we've done our setup, we tell the store to do
-    // it's first refresh. Nothing will happen if we do not call store.refresh()
-    store.refresh();
+    store.when("com.drinks.threeman.pro").approved(function(product) {
+        // download the feature
+            console.log('Pro edition approved');
+            $('.purchase').addClass("premium");
+            $('.free').addClass("premium");
+            $('.free').removeClass('free');
+            for (i = 0; i < switchery.length; i++) {
+                switchery[i].enable();
+            };
+            location.hash = '#menu';
+            proEdition = true;
+            product.finish();
+    });
 
     store.when("com.drinks.threeman.pro").updated( function() {
         var product = store.get('com.drinks.threeman.pro');
-        renderStore();
-        store.when("com.drinks.threeman.pro").updated(renderStore);
+        //store.when("com.drinks.threeman.pro").updated(renderStore);
 
-        store.when("com.drinks.threeman.pro").approved(function(product) {
-            // download the feature
-            
-                $('.purchase').addClass("premium");
-                $('.free').addClass("premium");
-                $('.free').removeClass('free');
-                for (i = 0; i < switchery.length; i++) {
-                    switchery[i].enable();
-                };
-                location.hash = '#menu';
-                
-                product.finish();
-        });
+        renderStore();        
     });
+
+    // After we've done our setup, we tell the store to do
+    // it's first refresh. Nothing will happen if we do not call store.refresh()
+    store.refresh();
 };
+
+
 
 function renderStore() {
 
@@ -66,7 +69,6 @@ function renderStore() {
     }
     else {
         // Good! Product loaded and valid.
-        $('#purchase').text('Unlock Pro ' + product.price);
 
         // Is this product owned? Give him a special class.
         if (product.owned) {
@@ -75,15 +77,20 @@ function renderStore() {
             $('.free').removeClass('free');
             for (i = 0; i < switchery.length; i++) {
                 switchery[i].enable();
-            }                       
+            }  
+            proEdition = true;
+            console.log(product.owned);
         }
         else {
+            console.log(product.owned + "False actually...");
+            $('#menu').addClass('free');
             $('.purchase').removeClass("premium");
             $('.free').removeClass('premium');
             $('.upgrade-link').fadeIn();
             for (i = 0; i < switchery.length; i++) {
                 switchery[i].disable();
-            }            
+            }         
+            $('#purchase').text('Unlock Pro ' + product.price);               
         }
 
         // Is an order for this product in progress? Can't be ordered right now?

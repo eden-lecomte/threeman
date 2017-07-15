@@ -19,9 +19,13 @@ var audioInit = {
         playEffect(_audio);
     },       
     newThreeman: function() {
-        var _audio = ['new3Man.mp3', 'new3man1.mp3', 'new3man2.mp3', '3/3.mp3', '3/3alt1.mp3', '3/3alt3.mp3', '3/3alt5.mp3', '3/3alt7.mp3', '3/3alt8.mp3', '3/3alt9.mp3', '3/3alt10.mp3'];
+        var _audio = ['new3man/new3Man.mp3', 'new3man/new3man1.mp3', 'new3man/new3man2.mp3', 'new3man/new3man3.mp3', '3/3.mp3', '3/3alt1.mp3', '3/3alt2.mp3', '3/3alt3.mp3', '3/3alt5.mp3', '3/3alt7.mp3', '3/3alt8.mp3', '3/3alt9.mp3', '3/3alt10.mp3'];
         playEffect(_audio);
-    },        
+    },     
+    offTable: function() {
+        var _audio = ['offTable.mp3', 'offTable1.mp3'];
+        playEffect(_audio);
+    },         
     virginRoll: function() {
         var _audio = ['Virgin.mp3', 'VirginRoll.mp3'];
         playEffect(_audio);        
@@ -49,7 +53,11 @@ var audioInit = {
     doubleSix: function() {
         var _audio = ['12/12.mp3', '12/12alt.mp3', '12/12alt1.mp3', '12/12alt2.mp3', '12/12alt3.mp3'];
         playEffect(_audio);         
-    }
+    },
+    duel: function() {
+        var _audio = ['its-time-to-duel.mp3', 'timetoduelTTS.mp3'];
+        playEffect(_audio);         
+    } 
 };
 
 
@@ -68,6 +76,9 @@ audio["duelStart"].src = "audio/its-time-to-duel.mp3";
 
 audio["welcome"] = new Audio();
 audio["welcome"].src = "audio/Welcometothreeman.mp3";
+
+audio["chime"] = new Audio();
+audio["chime"].src = "audio/buttonchime02up.wav";
 
 audio["mlghorn"] = new Audio();
 audio["mlghorn"].src = "audio/3airhorn.mp3";

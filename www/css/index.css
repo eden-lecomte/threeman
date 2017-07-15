@@ -678,7 +678,7 @@ footer {
 }
     /* FREE only feature, inside a PREMIUM container */
     .premium .free-only {
-        display: none;
+        display: none !important;
     }
 
 .upgrade-link {
@@ -690,3 +690,17 @@ footer {
         color: #e81f7b !important;
         font-weight: bold;
     }
+
+.newDrink {
+    display: none;
+    position: fixed;
+    top: 65vh;
+    left: 45%;
+    width: 40px;
+    height: 40px;
+    font-size: 10px;
+    text-align: center;
+    z-index: 999;
+    color: #e81f7b !important;
+    font-weight: bold;    
+}
