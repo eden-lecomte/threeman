@@ -704,7 +704,6 @@ function update3ManDrinks(drinks) {
                 if (soundOn == true) {
                     var audioSound = new Audio();
                     audioSound.src = "audio/buttonchime02up.wav";
-                    audioSound.volume = 1.2;                    
                     audioSound.play();
 
                     setTimeout(function() {
