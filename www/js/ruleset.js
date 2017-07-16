@@ -567,6 +567,8 @@ var gameFunctions = {
             $('#diceResult').text('RIP');
             $('#diceResult').css('font-size', $('.results').width()*0.5 + 'px');
             
+            $('#illustration img').attr('src', 'img/iconOffTable1.png');            
+
             $('.rollInstructions').text('Roll again');   
             $('.rollInstructions').hide();
 
