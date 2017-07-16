@@ -189,9 +189,15 @@ footer {
 
 #startGame img {
     /*margin-left: 15%;*/
-    margin-bottom: 50px;
+    margin-bottom: 0px;
     min-width: 200px;
     }
+
+    #startGame img.pro {
+        display: none;
+        position: absolute;
+        transform: translate(-90%, -15%);
+    }    
 
  .button {
         width: 100%;
